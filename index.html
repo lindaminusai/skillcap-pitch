@@ -1,0 +1,1591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillCap Pitch Deck</title>
+    <!-- Tailwind CSS from CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- React 18 from CDN -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <!-- Babel Standalone for JSX compilation -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        body {
+            background-color: #0f172a;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useCallback } = React;
+        const { createRoot } = ReactDOM;
+
+
+const LOGO_SRC = 'data:image/png;base64,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EAcAAICCBHEAAAAoSBAHAACAggRxAAAAKEgQBwAAgIIEcQAAAChIEAcAAICCBHEAAAAoSBAHAACAggRxAAAAKEgQBwAAgIIEcQAAAChIEAcAAICCBHEAAAAoSBAHAACAggRxAAAAKEgQBwAAgIIEcQAAAChIEAcAAICCBHEAAAAoSBAHAACAggRxAAAAKEgQBwAAgIIEcQAAAChIEAcAAICCBHEAAAAoSBAHAACAggRxAAAAKEgQBwAAgIIEcQAAAChIEAcAAICCBHEAAAAoSBAHAACAggRxAAAAKEgQBwAAgIIEcQAAAChIEAcAAICCBHEAAAAoSBAHAACAggRxAAAAKEgQBwAAgIIEcQAAAChIEAcAAICCBHEAAAAoSBAHAACAggRxAAAAKEgQBwAAgIIEcQAAAChIEAcAAICCBHEAAAAoSBAHAACAggRxAAAAKEgQBwAAgIIEcQAAAChIEAcAAICCBHEAAAAoSBAHAACAggRxAAAAKEgQBwAAgIIEcQAAAChIEAcAAICCBHEAAAAoSBAHAACAggRxAAAAKEgQBwAAgIIEcQAAAChIEAcAAICCBHEAAAAoSBAHAACAggRxAAAAKEgQBwAAgIIEcQAAAChIEAcAAICC/g9fn6vF1sO/6gAAAABJRU5ErkJggg==';
+
+const MinusAiLogo = ({ size = 40 }) => (
+  <div className="flex items-center gap-2">
+    <img src={LOGO_SRC} width={size} height={size} alt="minus-ai" className="flex-shrink-0" />
+  </div>
+);
+
+const GradientText = ({ children, size = 'text-4xl', className = '' }) => (
+  <span className={`${size} font-bold bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent ${className}`}>
+    {children}
+  </span>
+);
+
+const GridOverlay = () => (
+  <div className="fixed inset-0 pointer-events-none opacity-5">
+    <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+          <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" strokeWidth="0.5"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#grid)"/>
+    </svg>
+  </div>
+);
+
+const SLIDE_LABELS = [
+  'Title', 'Axioms', 'Worldview', 'Problem', 'Solution', 'Ecosystem',
+  'Six Pools', 'Market', 'P&L', 'Fission',
+  'Trust', 'Agents', 'Tech', 'Flywheel', 'Closer'
+];
+
+const SlideNav = ({ current, total, onGoTo }) => (
+  <div className="fixed bottom-0 left-0 right-0 z-30 flex items-center justify-center py-2 bg-slate-950/80 backdrop-blur-sm border-t border-slate-800/50">
+    <div className="flex items-center gap-1">
+      {Array.from({ length: total }, (_, i) => (
+        <button
+          key={i}
+          onClick={(e) => { e.stopPropagation(); onGoTo(i); }}
+          className={`relative group transition-all duration-300 rounded-full ${
+            i === current
+              ? 'w-8 h-3 bg-gradient-to-r from-indigo-400 to-pink-400'
+              : 'w-3 h-3 bg-slate-700 hover:bg-slate-500'
+          }`}
+        >
+          <span className={`absolute -top-8 left-1/2 -translate-x-1/2 text-xs px-2 py-1 rounded bg-slate-800 border border-slate-700 whitespace-nowrap opacity-0 group-hover:opacity-100 transition pointer-events-none ${
+            i === current ? 'text-indigo-300' : 'text-slate-400'
+          }`}>
+            {SLIDE_LABELS[i] || `Slide ${i + 1}`}
+          </span>
+        </button>
+      ))}
+    </div>
+    <span className="ml-4 text-xs text-slate-500 font-mono">
+      {String(current + 1).padStart(2, '0')}/{String(total).padStart(2, '0')}
+    </span>
+  </div>
+);
+
+const LanguageToggle = ({ lang, onToggle }) => (
+  <div className="fixed top-8 right-8 z-50 flex gap-2 items-center px-4 py-2 rounded-full bg-slate-900/60 border border-indigo-400/30 backdrop-blur-sm">
+    <button
+      onClick={() => onToggle('en')}
+      className={`px-3 py-1 rounded-full text-sm font-bold transition ${
+        lang === 'en'
+          ? 'bg-indigo-500/40 text-indigo-300 border border-indigo-400/50'
+          : 'text-slate-400 hover:text-slate-300'
+      }`}
+    >
+      EN
+    </button>
+    <div className="text-slate-500">|</div>
+    <button
+      onClick={() => onToggle('zh')}
+      className={`px-3 py-1 rounded-full text-sm font-bold transition ${
+        lang === 'zh'
+          ? 'bg-purple-500/40 text-purple-300 border border-purple-400/50'
+          : 'text-slate-400 hover:text-slate-300'
+      }`}
+    >
+      中文
+    </button>
+  </div>
+);
+
+const SlideContainer = ({ children, visible }) => (
+  <div className={`transition-all duration-700 ${visible ? 'opacity-100' : 'opacity-0'}`}>
+    {children}
+  </div>
+);
+
+const AnimatedElement = ({ children, visible, delay = 0, index = 0 }) => (
+  <div
+    className={`transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+    style={{ transitionDelay: visible ? `${delay + index * 150}ms` : '0ms' }}
+  >
+    {children}
+  </div>
+);
+
+function SkillCapPitch() {
+  const [current, setCurrent] = useState(0);
+  const [direction, setDirection] = useState(1);
+  const [lang, setLang] = useState('en');
+
+  const t = (key, translations) => {
+    return translations[lang] || translations['en'];
+  };
+
+  const SLIDES = [
+    {
+      id: 'title',
+      render: (visible) => (
+        <SlideContainer visible={visible}>
+          <div className="absolute inset-0 flex flex-col items-center justify-center">
+            <div className="absolute top-8 left-8">
+              <MinusAiLogo size={50} />
+            </div>
+
+            <AnimatedElement visible={visible} delay={200} index={0}>
+              <GradientText size="text-8xl" className="font-black leading-tight">
+                SkillCap.ai
+              </GradientText>
+            </AnimatedElement>
+
+            <AnimatedElement visible={visible} delay={200} index={1}>
+              <p className="text-2xl text-slate-300 mt-6 font-semibold">
+                {t('slide1_subtitle', { en: 'The First Use-to-Own Protocol for AI Skills', zh: '首个 AI Skill「使用即拥有」协议' })}
+              </p>
+            </AnimatedElement>
+
+            <AnimatedElement visible={visible} delay={400} index={2}>
+              <p className="text-xl text-indigo-400 mt-3 font-bold tracking-wide">
+                {t('slide1_tagline', { en: 'Use It, Own It, Trade It.', zh: '用它、持有它、交易它。' })}
+              </p>
+            </AnimatedElement>
+
+            <AnimatedElement visible={visible} delay={600} index={3}>
+              <p className="text-base text-slate-400 mt-6 max-w-2xl text-center leading-relaxed">
+                {t('slide1_desc', { en: 'Real AI Skills people actually use. On-chain ownership they can actually trade.', zh: '真实可用的 AI Skill，链上确权与交易。' })}
+              </p>
+            </AnimatedElement>
+
+            <div className="absolute bottom-16 left-0 right-0 flex justify-center">
+              <AnimatedElement visible={visible} delay={1200} index={5}>
+                <p className="text-xs text-slate-600">
+                  {t('slide1_cta', { en: 'Press → or click to continue', zh: '按 → 或点击继续' })}
+                </p>
+              </AnimatedElement>
+            </div>
+          </div>
+        </SlideContainer>
+      )
+    },
+    {
+      id: 'axioms',
+      render: (visible) => (
+        <SlideContainer visible={visible}>
+          <div className="absolute inset-0 flex flex-col items-center justify-center px-12">
+            <div className="absolute top-8 left-8">
+              <MinusAiLogo size={40} />
+            </div>
+
+            <GradientText size="text-5xl" className="mb-16">
+              {t('slide2_title', { en: 'First Principles', zh: '核心公理' })}
+            </GradientText>
+
+            <div className="space-y-6 max-w-3xl w-full">
+              <AnimatedElement visible={visible} delay={100} index={0}>
+                <div className="border-l-2 border-indigo-400 pl-6">
+                  <p className="text-xl text-slate-200">
+                    <span className="text-indigo-400 font-bold mr-3">I</span>
+                    {t('slide2_axiom1', { en: '"Skills create value."', zh: '"技能创造价值。"' })}
+                  </p>
+                </div>
+              </AnimatedElement>
+
+              <AnimatedElement visible={visible} delay={100} index={1}>
+                <div className="border-l-2 border-purple-400 pl-6">
+                  <p className="text-xl text-slate-200">
+                    <span className="text-purple-400 font-bold mr-3">II</span>
+                    {t('slide2_axiom2', { en: '"To use is to confirm value."', zh: '"使用即确认价值。"' })}
+                  </p>
+                </div>
+              </AnimatedElement>
+
+              <AnimatedElement visible={visible} delay={100} index={2}>
+                <div className="flex items-center justify-center gap-4 py-4">
+                  <span className="text-sm text-slate-500 font-mono">I</span>
+                  <span className="text-slate-500">+</span>
+                  <span className="text-sm text-slate-500 font-mono">II</span>
+                  <span className="text-2xl text-slate-400">→</span>
+                </div>
+              </AnimatedElement>
+
+              <AnimatedElement visible={visible} delay={100} index={3}>
+                <div className="p-6 rounded-lg bg-slate-800/60 border border-pink-400/30">
+                  <div className="mb-2">
+                    <span className="text-2xl font-bold bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">∴</span>
+                  </div>
+                  <p className="text-lg text-slate-200 leading-relaxed">
+                    {t('slide2_axiom3', { en: '"Those who best understand value are excluded from ownership."', zh: '"最懂价值的人被排除在所有权之外。"' })}
+                  </p>
+                </div>
+              </AnimatedElement>
+
+              <AnimatedElement visible={visible} delay={100} index={4}>
+                <div className="mt-8 p-8 rounded-lg bg-gradient-to-r from-indigo-500/10 to-pink-500/10 border border-indigo-400/30">
+                  <p className="text-3xl font-black text-center">
+                    <GradientText size="text-3xl">
+                      {t('slide2_conclusion', { en: '"To use is to invest."', zh: '"使用即投资。"' })}
+                    </GradientText>
+                  </p>
+                </div>
+              </AnimatedElement>
+            </div>
+          </div>
+        </SlideContainer>
+      )
+    },
+    {
+      id: 'worldview',
+      render: (visible) => (
+        <SlideContainer visible={visible}>
+          <div className="absolute inset-0 flex flex-col items-center justify-center px-12 py-16">
+            <div className="absolute top-8 left-8">
+              <MinusAiLogo size={40} />
+            </div>
+
+            <GradientText size="text-5xl" className="mb-12">
+              {t('slide_wv_title', { en: 'Worldview & Principles', zh: '世界观与原则' })}
+            </GradientText>
+
+            <div className="grid grid-cols-2 gap-10 max-w-5xl w-full">
+              {/* Left: Worldview as causal chain */}
+              <div>
+                <AnimatedElement visible={visible} delay={100} index={0}>
+                  <h3 className="text-lg font-bold text-indigo-400 mb-6 tracking-wide uppercase">
+                    {t('slide_wv_worldview', { en: 'Worldview — Causal Chain', zh: '世界观 — 因果链' })}
+                  </h3>
+                </AnimatedElement>
+
+                <div className="space-y-3">
+                  <AnimatedElement visible={visible} delay={100} index={1}>
+                    <div className="p-4 rounded-lg bg-gradient-to-r from-indigo-500/15 to-purple-500/15 border border-indigo-400/40">
+                      <p className="text-xs text-indigo-300 font-mono mb-1">{t('slide_wv_root', { en: 'ROOT AXIOM', zh: '根公理' })}</p>
+                      <p className="text-lg text-slate-100 font-bold">{t('slide_wv_a1', { en: 'Skill = Asset', zh: 'Skill 即资产' })}</p>
+                    </div>
+                  </AnimatedElement>
+
+                  <AnimatedElement visible={visible} delay={100} index={2}>
+                    <div className="flex justify-center text-slate-500 text-xl">↓</div>
+                  </AnimatedElement>
+
+                  <AnimatedElement visible={visible} delay={100} index={3}>
+                    <div className="p-4 rounded-lg bg-slate-800/60 border border-purple-400/30">
+                      <p className="text-xs text-purple-300 font-mono mb-1">{t('slide_wv_corollary', { en: 'COROLLARY', zh: '推论' })}</p>
+                      <p className="text-base text-slate-200">{t('slide_wv_a2', { en: 'Every contribution is priced', zh: '所有贡献皆被计价' })}</p>
+                    </div>
+                  </AnimatedElement>
+
+                  <AnimatedElement visible={visible} delay={100} index={4}>
+                    <div className="flex justify-center text-slate-500 text-xl">↓</div>
+                  </AnimatedElement>
+
+                  <AnimatedElement visible={visible} delay={100} index={5}>
+                    <div className="p-4 rounded-lg bg-slate-800/60 border border-pink-400/30">
+                      <p className="text-xs text-pink-300 font-mono mb-1">{t('slide_wv_require', { en: 'REQUIRES', zh: '必要条件' })}</p>
+                      <p className="text-base text-slate-200">{t('slide_wv_a3', { en: 'Full transparency + every action traceable', zh: '公开透明 + 所有行为可追溯' })}</p>
+                    </div>
+                  </AnimatedElement>
+                </div>
+              </div>
+
+              {/* Right: Principles — MECE */}
+              <div>
+                <AnimatedElement visible={visible} delay={100} index={6}>
+                  <h3 className="text-lg font-bold text-pink-400 mb-6 tracking-wide uppercase">
+                    {t('slide_wv_principles', { en: 'Principles — MECE', zh: '原则 — MECE' })}
+                  </h3>
+                </AnimatedElement>
+
+                <AnimatedElement visible={visible} delay={100} index={7}>
+                  <div className="mb-3 p-4 rounded-lg bg-slate-800/60 border border-indigo-400/30 flex items-start gap-4">
+                    <span className="text-2xl font-black text-indigo-400 opacity-60 font-mono leading-none mt-1">01</span>
+                    <div className="flex-1">
+                      <p className="text-base text-slate-100 font-bold">{t('slide_wv_p01', { en: 'Minimal + Efficient', zh: '极简 + 高效' })}</p>
+                      <p className="text-xs text-indigo-300 mt-1 font-mono">{t('slide_wv_p01_dim', { en: 'How we build', zh: '如何构建' })}</p>
+                    </div>
+                  </div>
+                </AnimatedElement>
+
+                <AnimatedElement visible={visible} delay={100} index={8}>
+                  <div className="mb-3 p-4 rounded-lg bg-slate-800/60 border border-purple-400/30 flex items-start gap-4">
+                    <span className="text-2xl font-black text-purple-400 opacity-60 font-mono leading-none mt-1">02</span>
+                    <div className="flex-1">
+                      <p className="text-base text-slate-100 font-bold">{t('slide_wv_p02', { en: 'Evolution-Driven', zh: '进化驱动' })}</p>
+                      <p className="text-xs text-slate-400 mt-1">{t('slide_wv_p02_sub', { en: 'Skills fission + dynamic decisions', zh: '含 Skills 裂变 + 动态决策' })}</p>
+                      <p className="text-xs text-purple-300 mt-1 font-mono">{t('slide_wv_p02_dim', { en: 'How we grow', zh: '如何成长' })}</p>
+                    </div>
+                  </div>
+                </AnimatedElement>
+
+                <AnimatedElement visible={visible} delay={100} index={9}>
+                  <div className="mb-3 p-4 rounded-lg bg-slate-800/60 border border-pink-400/30 flex items-start gap-4">
+                    <span className="text-2xl font-black text-pink-400 opacity-60 font-mono leading-none mt-1">03</span>
+                    <div className="flex-1">
+                      <p className="text-base text-slate-100 font-bold">{t('slide_wv_p03', { en: 'Adversarial Validation', zh: '对抗式验证' })}</p>
+                      <p className="text-xs text-pink-300 mt-1 font-mono">{t('slide_wv_p03_dim', { en: 'How we verify', zh: '如何验证' })}</p>
+                    </div>
+                  </div>
+                </AnimatedElement>
+
+                <AnimatedElement visible={visible} delay={100} index={10}>
+                  <div className="mb-3 p-4 rounded-lg bg-slate-800/60 border border-indigo-400/30 flex items-start gap-4">
+                    <span className="text-2xl font-black text-indigo-400 opacity-60 font-mono leading-none mt-1">04</span>
+                    <div className="flex-1">
+                      <p className="text-base text-slate-100 font-bold">{t('slide_wv_p04', { en: 'Market Pricing', zh: '市场定价' })}</p>
+                      <p className="text-xs text-indigo-300 mt-1 font-mono">{t('slide_wv_p04_dim', { en: 'How we price', zh: '如何定价' })}</p>
+                    </div>
+                  </div>
+                </AnimatedElement>
+              </div>
+            </div>
+          </div>
+        </SlideContainer>
+      )
+    },
+    {
+      id: 'problem',
+      render: (visible) => (
+        <SlideContainer visible={visible}>
+          <div className="absolute inset-0 flex flex-col items-center justify-center px-12 py-16">
+            <div className="absolute top-8 left-8">
+              <MinusAiLogo size={40} />
+            </div>
+
+            <GradientText size="text-5xl" className="mb-4">
+              {t('slide3_title', { en: 'The Problem', zh: '问题' })}
+            </GradientText>
+
+            <AnimatedElement visible={visible} delay={100} index={0}>
+              <p className="text-xl text-slate-300 text-center max-w-3xl mb-12">
+                {lang === 'en' ? (
+                  <>
+                    AI Skills Are the Next Trillion-Dollar Asset Class.<br/>
+                    <span className="text-pink-400 font-bold">Nobody Owns Them.</span>
+                  </>
+                ) : (
+                  <>
+                    AI Skill 是下一个万亿美元资产类别。<br/>
+                    <span className="text-pink-400 font-bold">但没人拥有它们。</span>
+                  </>
+                )}
+              </p>
+            </AnimatedElement>
+
+            <div className="grid grid-cols-3 gap-6 mb-12 max-w-5xl">
+              <AnimatedElement visible={visible} delay={100} index={1}>
+                <div className="p-6 rounded-lg bg-slate-900/50 border border-indigo-400/30 hover:border-indigo-400/60 transition">
+                  <div className="mb-3">
+                    <svg className="w-8 h-8 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0" />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M18 8.25l-1.5 1.5L18 11.25" />
+                    </svg>
+                  </div>
+                  <h3 className="text-lg font-bold text-indigo-400 mb-2">
+                    {t('slide3_card1_title', { en: "Creator's Dilemma", zh: '创作者困境' })}
+                  </h3>
+                  <p className="text-xs text-slate-400">
+                    {t('slide3_card1_desc', { en: 'Domain experts, not entrepreneurs. Thousands of excellent Skills languish in obscurity.', zh: '领域专家不是企业家。数千个优秀 Skill 无人问津。' })}
+                  </p>
+                </div>
+              </AnimatedElement>
+
+              <AnimatedElement visible={visible} delay={100} index={2}>
+                <div className="p-6 rounded-lg bg-slate-900/50 border border-purple-400/30 hover:border-purple-400/60 transition">
+                  <div className="mb-3">
+                    <svg className="w-8 h-8 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                    </svg>
+                  </div>
+                  <h3 className="text-lg font-bold text-purple-400 mb-2">
+                    {t('slide3_card2_title', { en: 'Web2 Gap', zh: 'Web2 缺口' })}
+                  </h3>
+                  <p className="text-xs text-slate-400">
+                    {t('slide3_card2_desc', { en: 'MiniMax, SkillsMP aggregate thousands of agents. Use it and leave. Use ≠ Own', zh: 'MiniMax、SkillsMP 聚合数万个 Agent。用完即走。使用 ≠ 拥有' })}
+                  </p>
+                </div>
+              </AnimatedElement>
+
+              <AnimatedElement visible={visible} delay={100} index={3}>
+                <div className="p-6 rounded-lg bg-slate-900/50 border border-pink-400/30 hover:border-pink-400/60 transition">
+                  <div className="mb-3">
+                    <svg className="w-8 h-8 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m9.86-2.556a4.5 4.5 0 00-6.364-6.364L4.5 8.25" />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15 12l-6-6" />
+                    </svg>
+                  </div>
+                  <h3 className="text-lg font-bold text-pink-400 mb-2">
+                    {t('slide3_card3_title', { en: 'Web3 Disconnect', zh: 'Web3 脱节' })}
+                  </h3>
+                  <p className="text-xs text-slate-400">
+                    {t('slide3_card3_desc', { en: 'Virtuals Protocol ~$900M. Trading narratives, not products. Own ≠ Use', zh: 'Virtuals Protocol 市值近 $900M。持有者在交易叙事，不是在用产品。拥有 ≠ 使用' })}
+                  </p>
+                </div>
+              </AnimatedElement>
+            </div>
+
+            <AnimatedElement visible={visible} delay={100} index={4}>
+              <div className="text-center p-8 rounded-lg bg-gradient-to-r from-slate-900/50 to-slate-800/50 border border-pink-400/30 max-w-2xl">
+                <p className="text-2xl font-bold text-pink-400">
+                  {t('slide3_bottom', { en: 'Each side is missing half. The market is waiting for a new system to bridge them.', zh: 'Web2 和 Web3 之间的鸿沟，市场在等一个横空出世的新系统来打通。' })}
+                </p>
+              </div>
+            </AnimatedElement>
+          </div>
+        </SlideContainer>
+      )
+    },
+    {
+      id: 'solution',
+      render: (visible) => (
+        <SlideContainer visible={visible}>
+          <div className="absolute inset-0 flex flex-col items-center justify-center px-12 py-16">
+            <div className="absolute top-8 left-8">
+              <MinusAiLogo size={40} />
+            </div>
+
+            <GradientText size="text-5xl" className="mb-4">
+              {t('slide4_title', { en: 'The Solution', zh: '解决方案' })}
+            </GradientText>
+
+            <AnimatedElement visible={visible} delay={100} index={0}>
+              <p className="text-2xl text-slate-200 text-center mb-4">
+                {t('slide4_headline', { en: 'Use = Own Shares. Every user is naturally an investor.', zh: '使用即持股。每个用户天然就是投资人。' })}
+              </p>
+            </AnimatedElement>
+
+            <div className="grid grid-cols-4 gap-6 max-w-5xl mb-12">
+              {[
+                {
+                  num: '01',
+                  title_en: 'Creator lists Skill',
+                  title_zh: '创作者发行 Skill',
+                  desc_en: 'Define equity structure like writing a corporate charter',
+                  desc_zh: '定义股权结构，如同撰写公司章程'
+                },
+                {
+                  num: '02',
+                  title_en: 'Users pay to use',
+                  title_zh: '用户付费使用',
+                  desc_en: 'Each invocation auto-accumulates ownership shares',
+                  desc_zh: '每一次调用自动累积所有权份额'
+                },
+                {
+                  num: '03',
+                  title_en: 'Dual-threshold unlock',
+                  title_zh: '双门槛解锁',
+                  desc_en: 'Usage + time targets met → secondary market opens',
+                  desc_zh: '使用量 + 时间达标 → 二级市场自动开放'
+                },
+                {
+                  num: '04',
+                  title_en: 'Free trading',
+                  title_zh: '自由交易',
+                  desc_en: 'Shares transferable, tradable, verifiable on-chain',
+                  desc_zh: '份额可转让、可交易，链上可验证'
+                }
+              ].map((step, idx) => (
+                <AnimatedElement key={idx} visible={visible} delay={100} index={idx + 1}>
+                  <div className="p-4 rounded-lg bg-slate-900/50 border border-indigo-400/30 hover:border-indigo-400/60 transition">
+                    <p className="text-2xl font-black text-indigo-400 mb-2">{step.num}</p>
+                    <p className="text-sm font-bold text-slate-200 mb-2">{lang === 'en' ? step.title_en : step.title_zh}</p>
+                    <p className="text-xs text-slate-400">{lang === 'en' ? step.desc_en : step.desc_zh}</p>
+                  </div>
+                </AnimatedElement>
+              ))}
+            </div>
+
+            <AnimatedElement visible={visible} delay={100} index={5}>
+              <div className="p-6 rounded-lg bg-gradient-to-r from-indigo-500/10 to-purple-500/10 border border-indigo-400/30 max-w-3xl">
+                <p className="text-sm text-slate-300 text-center">
+                  {lang === 'en' ? (
+                    <>
+                      <span className="text-indigo-400 font-bold">Fully Web2 user experience</span> — search, use, pay.<br/>
+                      <span className="text-purple-300">No wallet needed, no blockchain knowledge required.</span>
+                    </>
+                  ) : (
+                    <>
+                      <span className="text-indigo-400 font-bold">用户体验完全 Web2</span> — 搜索、使用、付费。<br/>
+                      <span className="text-purple-300">无需钱包，无需懂链。</span>
+                    </>
+                  )}
+                </p>
+              </div>
+            </AnimatedElement>
+          </div>
+        </SlideContainer>
+      )
+    },
+    {
+      id: 'ecosystem',
+      render: (visible) => (
+        <SlideContainer visible={visible}>
+          <div className="absolute inset-0 flex flex-col items-center justify-center px-12 py-16">
+            <div className="absolute top-8 left-8">
+              <MinusAiLogo size={40} />
+            </div>
+
+            <GradientText size="text-5xl" className="mb-2">
+              {t('slideEco_title', { en: 'Ecosystem Architecture', zh: '生态架构' })}
+            </GradientText>
+            <p className="text-slate-400 text-lg mb-6">
+              {t('slideEco_subtitle', { en: '3 Entities × 2 Dimensions × 7 Relationships', zh: '3 类实体 × 2 个维度 × 7 种关系' })}
+            </p>
+
+            <div className="w-full max-w-5xl flex gap-6">
+              {/* Left: Three Entities */}
+              <AnimatedElement visible={visible} delay={200} index={0}>
+                <div className="flex-1 flex flex-col gap-3">
+                  <div className="text-center text-sm font-bold text-indigo-300 tracking-wider uppercase mb-1">
+                    {t('slideEco_entities', { en: 'Three Entities', zh: '三类实体' })}
+                  </div>
+                  <div className="p-4 rounded-lg bg-slate-900/60 border border-indigo-400/40 text-center">
+                    <div className="text-2xl mb-1">👤</div>
+                    <div className="text-lg font-bold text-white">Person</div>
+                    <div className="text-xs text-slate-400 mt-1">{t('slideEco_person', { en: 'Individual or Legal Entity: Creator · User · Investor · Company · Organization', zh: '个人或法人实体：创作者 · 用户 · 投资人 · 公司 · 组织机构' })}</div>
+                  </div>
+                  <div className="p-4 rounded-lg bg-slate-900/60 border border-purple-400/40 text-center">
+                    <div className="text-2xl mb-1">⚡</div>
+                    <div className="text-lg font-bold text-white">Skill</div>
+                    <div className="text-xs text-slate-400 mt-1">{t('slideEco_skill', { en: 'Atomic · Composite · Agent', zh: '原子 · 组合 · Agent' })}</div>
+                  </div>
+                  <div className="p-4 rounded-lg bg-slate-900/60 border border-pink-400/40 text-center">
+                    <div className="text-2xl mb-1">🏛️</div>
+                    <div className="text-lg font-bold text-white">SC</div>
+                    <div className="text-xs text-slate-400 mt-1">{t('slideEco_sc', { en: 'Platform · Infrastructure · Ecosystem', zh: '平台 · 基础设施 · 生态' })}</div>
+                  </div>
+                </div>
+              </AnimatedElement>
+
+              {/* Center: Relationship Arrows */}
+              <AnimatedElement visible={visible} delay={400} index={1}>
+                <div className="flex-[2] flex flex-col gap-2">
+                  <div className="text-center text-sm font-bold text-purple-300 tracking-wider uppercase mb-1">
+                    {t('slideEco_rels', { en: 'Seven Relationships', zh: '七种关系' })}
+                  </div>
+                  {[
+                    { num: '①', label: { en: 'Person → Skill', zh: 'Person → Skill' }, desc: { en: 'Five Pools: use or invest → own Shares', zh: '五池：使用或投资 → 获得 Shares' }, color: 'indigo' },
+                    { num: '②', label: { en: 'Skill → SC', zh: 'Skill → SC' }, desc: { en: 'SC Share: creator-chosen tier (2/5/8%+)', zh: 'SC Share：创作者选择档位 (2/5/8%+)' }, color: 'purple' },
+                    { num: '③', label: { en: 'SC → Skill', zh: 'SC → Skill' }, desc: { en: 'Skill Pool Share: 10% of SC shares → Skills', zh: 'Skill Pool Share：SC 10% 份额 → Skills' }, color: 'pink' },
+                    { num: '④', label: { en: 'Parent → Child', zh: 'Parent → Child' }, desc: { en: 'Fission: D > threshold → new Skill born', zh: '裂变：D > 阈值 → 新 Skill 诞生' }, color: 'indigo' },
+                    { num: '⑤', label: { en: 'Skills → Composite', zh: 'Skills → Composite' }, desc: { en: 'Fusion: organic new value → founding shares', zh: '融合：有机新价值 → 创始份额' }, color: 'purple' },
+                    { num: '⑥', label: { en: 'Skill A ↔ Skill B', zh: 'Skill A ↔ Skill B' }, desc: { en: 'API call: pure transaction, no ownership', zh: 'API 调用：纯交易，无所有权' }, color: 'pink' },
+                    { num: '⑦', label: { en: 'Person → SC', zh: 'Person → SC' }, desc: { en: 'Traditional investment: off-chain equity', zh: '传统投资：链下股权' }, color: 'indigo' },
+                  ].map((r, i) => (
+                    <div key={i} className={`flex items-center gap-3 p-2 rounded bg-slate-800/40 border border-${r.color}-400/20`}>
+                      <span className="text-lg w-6 text-center">{r.num}</span>
+                      <span className="text-sm font-semibold text-white w-32 shrink-0">{t(`slideEco_r${i+1}_label`, r.label)}</span>
+                      <span className="text-xs text-slate-400 flex-1">{t(`slideEco_r${i+1}_desc`, r.desc)}</span>
+                    </div>
+                  ))}
+                </div>
+              </AnimatedElement>
+
+              {/* Right: Two Dimensions */}
+              <AnimatedElement visible={visible} delay={600} index={2}>
+                <div className="flex-1 flex flex-col gap-3">
+                  <div className="text-center text-sm font-bold text-pink-300 tracking-wider uppercase mb-1">
+                    {t('slideEco_dims', { en: 'Two Dimensions', zh: '两个维度' })}
+                  </div>
+                  <div className="p-4 rounded-lg bg-gradient-to-b from-indigo-500/10 to-transparent border border-indigo-400/30">
+                    <div className="text-center text-lg font-bold text-indigo-300 mb-2">
+                      {t('slideEco_account', { en: 'Account', zh: '账户' })}
+                    </div>
+                    <div className="text-xs text-slate-400 space-y-1">
+                      <div>👤 SC Credit balance</div>
+                      <div>⚡ 3 sub-accounts</div>
+                      <div>🏛️ Fee + dividends</div>
+                    </div>
+                  </div>
+                  <div className="p-4 rounded-lg bg-gradient-to-b from-pink-500/10 to-transparent border border-pink-400/30">
+                    <div className="text-center text-lg font-bold text-pink-300 mb-2">
+                      {t('slideEco_shares', { en: 'Shares', zh: '股份' })}
+                    </div>
+                    <div className="text-xs text-slate-400 space-y-1">
+                      <div>👤 Skill Shares held</div>
+                      <div>⚡ Five Pools + SC Share</div>
+                      <div>🏛️ Skill Pool (10%)</div>
+                    </div>
+                  </div>
+                  <div className="mt-2 p-3 rounded-lg bg-slate-800/40 border border-slate-600/30 text-center">
+                    <div className="text-xs text-slate-500 italic">
+                      {t('slideEco_complete', { en: 'Exhaustive: any future AI capability maps to this framework', zh: '穷尽性：任何未来 AI 能力都映射到此框架' })}
+                    </div>
+                  </div>
+                </div>
+              </AnimatedElement>
+            </div>
+
+            <AnimatedElement visible={visible} delay={800} index={3}>
+              <div className="mt-6 text-center p-3 rounded-lg bg-gradient-to-r from-indigo-500/10 via-purple-500/10 to-pink-500/10 border border-purple-400/20 max-w-3xl">
+                <span className="text-sm text-slate-300">
+                  {t('slideEco_mutual', { en: '② + ③ = Mutual Shareholding Loop → when any Skill succeeds, SC benefits; when the platform grows, every Skill benefits.', zh: '② + ③ = 互持股循环 → 任何 Skill 成功，SC 受益；平台增长，每个 Skill 都受益。' })}
+                </span>
+              </div>
+            </AnimatedElement>
+          </div>
+        </SlideContainer>
+      )
+    },
+    {
+      id: 'six-pools',
+      render: (visible) => (
+        <SlideContainer visible={visible}>
+          <div className="absolute inset-0 flex flex-col items-center justify-center px-10 py-14">
+            <div className="absolute top-8 left-8">
+              <MinusAiLogo size={40} />
+            </div>
+
+            <GradientText size="text-5xl" className="mb-2">
+              {t('slide6_title', { en: 'Ownership Structure', zh: '所有权结构' })}
+            </GradientText>
+            <p className="text-xl text-purple-300 mb-8">
+              {t('slide6_subtitle', { en: 'Five Person Pools + SC Share = 100% of Skill Shares', zh: '五个 Person 池 + SC Share = Skill 总股份的 100%' })}
+            </p>
+
+            {/* Six pools in one row: [--- 5 Person Pools grouped ---] + [SC Share] */}
+            <div className="flex items-stretch gap-4 mb-6 max-w-6xl w-full">
+
+              {/* Five Person Pools — grouped with border */}
+              <div className="flex-1 rounded-xl border-2 border-indigo-400/30 bg-slate-900/20 p-3 flex flex-col">
+                <div className="text-center text-xs font-bold text-indigo-300 tracking-wider uppercase mb-3">
+                  {t('slide6_person_label', { en: 'Person Pools', zh: 'Person 池' })}
+                </div>
+                <div className="flex-1 grid grid-cols-5 gap-2">
+                  {[
+                    { emoji: '🔨', name_en: 'Build', name_zh: '建设', pct: 30, color: 'from-indigo-500 to-indigo-400' },
+                    { emoji: '👤', name_en: 'Use', name_zh: '使用', pct: 25, color: 'from-purple-500 to-purple-400' },
+                    { emoji: '📣', name_en: 'Spread', name_zh: '传播', pct: 15, color: 'from-violet-500 to-violet-400' },
+                    { emoji: '💰', name_en: 'Invest', name_zh: '投资', pct: 20, color: 'from-fuchsia-500 to-fuchsia-400' },
+                    { emoji: '🏛', name_en: 'Govern', name_zh: '治理', pct: 10, color: 'from-pink-500 to-pink-400' }
+                  ].map((pool, idx) => (
+                    <AnimatedElement key={idx} visible={visible} delay={150} index={idx}>
+                      <div className="h-full p-3 rounded-lg bg-gradient-to-br from-slate-900 to-slate-800 border border-indigo-400/20 text-center flex flex-col items-center justify-center">
+                        <div className="text-2xl mb-1">{pool.emoji}</div>
+                        <p className="font-bold text-slate-200 text-xs mb-1">{lang === 'en' ? pool.name_en : pool.name_zh}</p>
+                        <p className="text-lg font-black text-slate-300 mb-1">{pool.pct}%</p>
+                        <div className="w-full h-1 bg-slate-700 rounded-full overflow-hidden">
+                          <div className={`h-full rounded-full bg-gradient-to-r ${pool.color}`} style={{width: `${pool.pct * 3}%`}}></div>
+                        </div>
+                      </div>
+                    </AnimatedElement>
+                  ))}
+                </div>
+              </div>
+
+              {/* + sign between groups */}
+              <div className="flex items-center">
+                <span className="text-2xl font-bold text-slate-500">+</span>
+              </div>
+
+              {/* SC Share Pool — separate, same height */}
+              <AnimatedElement visible={visible} delay={150} index={5}>
+                <div className="w-36 rounded-xl border-2 border-pink-400/40 bg-gradient-to-b from-pink-500/10 to-slate-900/40 p-3 flex flex-col items-center justify-center text-center">
+                  <div className="text-xs font-bold text-pink-300 tracking-wider uppercase mb-2">
+                    {t('slide6_sc_label', { en: 'Platform', zh: '平台池' })}
+                  </div>
+                  <div className="text-2xl mb-1">🤝</div>
+                  <p className="font-bold text-white text-sm mb-1">SC Share</p>
+                  <p className="text-lg font-black text-pink-300 mb-1">2-10%</p>
+                  <div className="w-full h-1 bg-slate-700 rounded-full overflow-hidden mb-2">
+                    <div className="h-full rounded-full bg-gradient-to-r from-pink-500 to-rose-400" style={{width: '30%'}}></div>
+                  </div>
+                  <p className="text-xs text-slate-400 leading-tight">
+                    {t('slide6_sc_tiers', { en: '2% · 5% · 8%+', zh: '2% · 5% · 8%+' })}
+                  </p>
+                </div>
+              </AnimatedElement>
+            </div>
+
+            {/* Bottom info row — same flex structure, each child animated with delay after pools */}
+            <div className="flex items-stretch gap-4 max-w-6xl w-full">
+              <div className="flex-1">
+                <AnimatedElement visible={visible} delay={1100} index={0}>
+                  <div className="h-full py-2 px-4 rounded-lg bg-slate-900/40 border border-indigo-400/20 text-center flex items-center justify-center">
+                    <p className="text-sm text-slate-300">
+                      {t('slide6_templates', { en: 'Templates: ', zh: '模板：' })}
+                      <span className="text-purple-300 font-bold">Creator-Led / Community-Led / Investor-Led</span>
+                    </p>
+                  </div>
+                </AnimatedElement>
+              </div>
+              <div className="flex items-center"><span className="text-2xl font-bold text-transparent">+</span></div>
+              <div className="w-36">
+                <AnimatedElement visible={visible} delay={1100} index={0}>
+                  <div className="h-full py-2 px-3 rounded-lg bg-slate-900/40 border border-pink-400/20 text-center flex items-center justify-center">
+                    <p className="text-xs text-slate-400 leading-tight">{t('slide6_sc_note', { en: 'SC Share tier is chosen by the creator at listing. Higher tier unlocks more platform resources. All choices are on-chain visible.', zh: 'SC Share 档位由创作者上架时选择。档位越高，解锁的平台资源越多。所有选择链上可见。' })}</p>
+                  </div>
+                </AnimatedElement>
+              </div>
+            </div>
+
+            <p className="text-xs text-slate-500 italic text-center mt-6">
+              {t('slide6_flexible', { en: '* Default allocation shown (Creator-Led). All ratios configurable in the Skill Constitution.', zh: '* 以上为默认分配（创作者导向）。所有比例均可在 Skill 宪章中配置。' })}
+            </p>
+          </div>
+        </SlideContainer>
+      )
+    },
+    {
+      id: 'market-structure',
+      render: (visible) => (
+        <SlideContainer visible={visible}>
+          <div className="absolute inset-0 flex flex-col items-center justify-center px-12 py-16">
+            <div className="absolute top-8 left-8">
+              <MinusAiLogo size={40} />
+            </div>
+
+            <GradientText size="text-5xl" className="mb-2">
+              {t('slide6_title', { en: 'Market Structure', zh: '市场结构' })}
+            </GradientText>
+            <p className="text-2xl text-purple-300 mb-10">
+              {t('slide6_subtitle', { en: 'Two-Phase Market', zh: '两阶段市场' })}
+            </p>
+
+            <div className="grid grid-cols-2 gap-10 max-w-5xl w-full">
+              {/* Left column - PRIMARY MARKET */}
+              <AnimatedElement visible={visible} delay={100} index={0}>
+                <div className="p-6 rounded-lg bg-slate-900/50 border border-indigo-400/30 h-full">
+                  <h3 className="text-xl font-bold text-indigo-400 mb-5">PRIMARY MARKET</h3>
+
+                  {/* Funding sources */}
+                  <div className="flex gap-3 mb-4">
+                    <div className="flex-1 p-3 rounded bg-slate-800/60 border border-indigo-400/20">
+                      <p className="text-xs font-bold text-indigo-300 mb-1">
+                        {t('slide6_usage_fees', { en: 'Usage Fees', zh: '使用付费' })}
+                      </p>
+                      <p className="text-xs text-slate-500">
+                        {t('slide6_usage_note', { en: 'auto-converts to Shares', zh: '自动转为股份' })}
+                      </p>
+                    </div>
+                    <div className="flex-1 p-3 rounded bg-slate-800/60 border border-purple-400/20">
+                      <p className="text-xs font-bold text-purple-300 mb-1">
+                        {t('slide6_direct_investment', { en: 'Direct Investment', zh: '投资人直投' })}
+                      </p>
+                      <p className="text-xs text-slate-500 font-mono">P(s) = a × s<sup>n</sup></p>
+                    </div>
+                  </div>
+
+                  {/* Arrow down */}
+                  <div className="text-center text-indigo-400 text-lg mb-3">↓</div>
+
+                  {/* Skill Public Account */}
+                  <div className="p-3 rounded bg-gradient-to-r from-indigo-900/30 to-purple-900/30 border border-pink-400/30 text-center mb-3">
+                    <p className="text-sm font-bold bg-gradient-to-r from-indigo-300 to-pink-300 bg-clip-text text-transparent">
+                      {t('slide6_skill_account', { en: 'Skill Public Account', zh: 'Skill 公开账户' })}
+                    </p>
+                    <p className="text-xs text-slate-400">
+                      {t('slide6_onchain_visible', { en: 'Every transaction visible on-chain', zh: '每笔交易链上可见' })}
+                    </p>
+                  </div>
+
+                  {/* Arrow down */}
+                  <div className="text-center text-pink-400 text-lg mb-3">↓</div>
+
+                  {/* Three sub-accounts */}
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between p-2.5 rounded bg-slate-800/50 border border-indigo-400/20">
+                      <div>
+                        <span className="text-xs font-bold text-indigo-300">
+                          {t('slide6_creator_personal', { en: 'Creator Personal', zh: '创作者个人' })}
+                        </span>
+                        <p className="text-xs text-slate-500">
+                          {t('slide6_creator_note', { en: 'Free disposal, private after withdrawal', zh: '自由支配，提现后私密' })}
+                        </p>
+                      </div>
+                      <span className="text-base font-bold text-indigo-400 ml-3">45%</span>
+                    </div>
+                    <div className="flex items-center justify-between p-2.5 rounded bg-slate-800/50 border border-purple-400/20">
+                      <div>
+                        <span className="text-xs font-bold text-purple-300">
+                          {t('slide6_rd_api', { en: 'R&D / API', zh: '研发/API运营' })}
+                        </span>
+                        <p className="text-xs text-slate-500">
+                          {t('slide6_rd_note', { en: 'On-chain traceable only', zh: '仅链上可追踪' })}
+                        </p>
+                      </div>
+                      <span className="text-base font-bold text-purple-400 ml-3">30%</span>
+                    </div>
+                    <div className="flex items-center justify-between p-2.5 rounded bg-slate-800/50 border border-pink-400/20">
+                      <div>
+                        <span className="text-xs font-bold text-pink-300">
+                          {t('slide6_treasury', { en: 'Treasury', zh: '金库' })}
+                        </span>
+                        <p className="text-xs text-slate-500">
+                          {t('slide6_treasury_note', { en: 'Governance committee decides', zh: '治理委员会决策' })}
+                        </p>
+                      </div>
+                      <span className="text-base font-bold text-pink-400 ml-3">25%</span>
+                    </div>
+                  </div>
+
+                  {/* Platform principle */}
+                  <p className="text-xs text-slate-500 mt-4 text-center italic">
+                    {t('slide6_platform_principle', { en: 'R&D reserve ≥ 90 days operating cost', zh: '研发储备 ≥ 90天运营成本' })}
+                  </p>
+                </div>
+              </AnimatedElement>
+
+              {/* Right column - SECONDARY MARKET */}
+              <AnimatedElement visible={visible} delay={100} index={1}>
+                <div className="p-6 rounded-lg bg-slate-900/50 border border-pink-400/30 h-full">
+                  <h3 className="text-xl font-bold text-pink-400 mb-5">SECONDARY MARKET</h3>
+                  <div className="space-y-4">
+                    <div className="p-4 rounded bg-slate-800/50">
+                      <p className="text-sm text-slate-300 font-mono mb-2">Dual Threshold</p>
+                      <p className="text-xs text-slate-400">Time ≥ T  AND  Usage ≥ N</p>
+                    </div>
+                    <p className="text-sm text-slate-300">
+                      {t('slide6_secondary', { en: 'Price determined purely by supply and demand', zh: '完全由供需决定价格' })}
+                    </p>
+                    <div className="p-4 rounded bg-slate-800/50">
+                      <p className="text-sm text-slate-300 font-mono mb-2">AMM Liquidity Pool</p>
+                      <p className="text-xs text-slate-400">x × y = k</p>
+                    </div>
+                    <p className="text-sm text-slate-300">
+                      {t('slide6_secondary_amm', { en: 'Founding shares unlock and trade freely', zh: '创始股解锁，自由交易' })}
+                    </p>
+                    <p className="text-xs text-purple-300">
+                      {t('slide6_secondary_lp', { en: 'LP earns 0.3% trading fee', zh: '流动性提供者赚取 0.3% 交易费' })}
+                    </p>
+                  </div>
+                </div>
+              </AnimatedElement>
+            </div>
+
+            {/* Bottom timeline */}
+            <AnimatedElement visible={visible} delay={200} index={2}>
+              <div className="mt-10 flex items-center justify-center gap-4">
+                <div className="text-indigo-400 font-bold">PRIMARY</div>
+                <div className="flex items-center gap-2 text-purple-300 text-sm font-bold">
+                  <div className="w-12 h-0.5 bg-gradient-to-r from-indigo-400 to-pink-400"></div>
+                  <span>{t('slide6_threshold', { en: 'Dual-threshold unlock', zh: '双门槛解锁' })}</span>
+                  <div className="w-12 h-0.5 bg-gradient-to-r from-indigo-400 to-pink-400"></div>
+                </div>
+                <div className="text-pink-400 font-bold">SECONDARY</div>
+              </div>
+            </AnimatedElement>
+          </div>
+        </SlideContainer>
+      )
+    },
+    {
+      id: 'pnl',
+      render: (visible) => (
+        <SlideContainer visible={visible}>
+          <div className="absolute inset-0 flex flex-col items-center justify-center px-12 py-16">
+            <div className="absolute top-8 left-8">
+              <MinusAiLogo size={40} />
+            </div>
+
+            <GradientText size="text-5xl" className="mb-2">
+              {t('slide7_title', { en: 'Skill P&L', zh: 'Skill 损益表' })}
+            </GradientText>
+            <p className="text-2xl text-purple-300 mb-10">
+              {t('slide7_subtitle', { en: 'Every Skill has its own income statement', zh: '每个 Skill 都有损益表' })}
+            </p>
+
+            <div className="max-w-2xl w-full space-y-3 mb-8">
+              {/* Gross Revenue */}
+              <AnimatedElement visible={visible} delay={100} index={0}>
+                <div className="p-4 rounded-lg bg-gradient-to-r from-indigo-500/20 to-indigo-500/10 border border-indigo-400/30 text-center">
+                  <p className="text-slate-200 font-bold text-lg">
+                    {t('slide7_revenue', { en: 'Gross Revenue', zh: '总收入' })}
+                  </p>
+                  <p className="text-xs text-slate-400 mt-1">
+                    {t('slide7_revenue_note', { en: 'Usage fees from all invocations', zh: '所有调用产生的使用费' })}
+                  </p>
+                </div>
+              </AnimatedElement>
+
+              <div className="text-center text-slate-500">↓</div>
+
+              {/* API Cost */}
+              <AnimatedElement visible={visible} delay={150} index={1}>
+                <div className="p-4 rounded-lg bg-slate-900/50 border border-slate-700 text-center">
+                  <p className="text-slate-300">
+                    {t('slide7_api_cost', { en: '− API Cost', zh: '− API 成本' })}
+                    <span className="text-slate-500 text-xs ml-2">
+                      {t('slide7_api_note', { en: '(underlying model calls)', zh: '(底层模型调用)' })}
+                    </span>
+                  </p>
+                </div>
+              </AnimatedElement>
+
+              <div className="text-center text-slate-500">↓</div>
+
+              {/* SK Platform Fee */}
+              <AnimatedElement visible={visible} delay={200} index={2}>
+                <div className="p-4 rounded-lg bg-slate-900/50 border border-slate-700 text-center">
+                  <p className="text-slate-300">
+                    {t('slide7_platform_fee', { en: '− SK Platform Fee', zh: '− SK 平台费' })}
+                    <span className="text-indigo-400 font-bold ml-2">1%</span>
+                  </p>
+                </div>
+              </AnimatedElement>
+
+              <div className="text-center text-slate-400 font-bold text-lg">=</div>
+
+              {/* Net Revenue */}
+              <AnimatedElement visible={visible} delay={250} index={3}>
+                <div className="p-4 rounded-lg bg-gradient-to-r from-purple-500/20 to-pink-500/10 border border-purple-400/30 text-center">
+                  <p className="text-purple-200 font-bold text-lg">
+                    {t('slide7_net', { en: 'Net Revenue', zh: '净收入' })}
+                  </p>
+                </div>
+              </AnimatedElement>
+
+              <div className="text-center text-pink-400 font-bold text-lg">↓</div>
+
+              {/* Three-Account Distribution */}
+              <AnimatedElement visible={visible} delay={300} index={4}>
+                <div className="p-5 rounded-lg bg-gradient-to-r from-indigo-900/20 to-pink-900/20 border border-pink-400/30 text-center">
+                  <p className="text-sm text-slate-400 mb-3">
+                    {t('slide7_distribution', { en: 'Three-Account Distribution', zh: '三子账户分配' })}
+                  </p>
+                  <div className="flex justify-center gap-8">
+                    <div className="text-center">
+                      <p className="text-2xl font-bold text-indigo-400">45%</p>
+                      <p className="text-xs text-indigo-300 mt-1">
+                        {t('slide7_personal', { en: 'Creator Personal', zh: '创作者个人' })}
+                      </p>
+                    </div>
+                    <div className="text-center">
+                      <p className="text-2xl font-bold text-purple-400">30%</p>
+                      <p className="text-xs text-purple-300 mt-1">
+                        {t('slide7_rd', { en: 'R&D / API', zh: '研发 / API' })}
+                      </p>
+                    </div>
+                    <div className="text-center">
+                      <p className="text-2xl font-bold text-pink-400">25%</p>
+                      <p className="text-xs text-pink-300 mt-1">
+                        {t('slide7_treasury', { en: 'Treasury → Dividends', zh: '金库 → 分红' })}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </AnimatedElement>
+            </div>
+
+            {/* Bottom notes */}
+            <AnimatedElement visible={visible} delay={350} index={5}>
+              <div className="max-w-3xl w-full space-y-3">
+                <div className="p-4 rounded-lg bg-slate-900/50 border border-purple-400/30 text-center">
+                  <p className="text-sm text-slate-300">
+                    <span className="text-purple-300 font-bold">
+                      {t('slide7_dividends', { en: 'Dividends weighted by usage', zh: '分红按使用量加权' })}
+                    </span>
+                    {lang === 'en' ? ' — use more, earn more' : ' — 用得越多，分得越多'}
+                  </p>
+                </div>
+                <div className="p-4 rounded-lg bg-gradient-to-r from-indigo-500/10 to-pink-500/10 border border-indigo-400/30 text-center">
+                  <p className="text-sm text-indigo-400 font-bold">
+                    {t('slide7_speculation', { en: 'Pure speculators who hold but don\'t use → diminishing returns', zh: '纯持有不使用 → 回报递减' })}
+                  </p>
+                </div>
+              </div>
+            </AnimatedElement>
+          </div>
+        </SlideContainer>
+      )
+    },
+    {
+      id: 'fission',
+      render: (visible) => (
+        <SlideContainer visible={visible}>
+          <div className="absolute inset-0 flex flex-col items-center justify-center px-12 py-16">
+            <div className="absolute top-8 left-8">
+              <MinusAiLogo size={40} />
+            </div>
+
+            <GradientText size="text-5xl" className="mb-4">
+              {t('slide8_title', { en: 'Living Assets', zh: '活的资产' })}
+            </GradientText>
+            <p className="text-xl text-slate-300 mb-12">
+              {t('slide8_subtitle', { en: "Skills aren't static products. They fission and reproduce.", zh: 'Skill 不是静态商品。它会裂变，会繁殖。' })}
+            </p>
+
+            <AnimatedElement visible={visible} delay={100} index={0}>
+              <div className="mb-12 w-full max-w-4xl">
+                <svg className="w-full h-32" viewBox="0 0 800 120" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="100" cy="60" r="30" fill="#818cf8" opacity="0.3" stroke="#818cf8" strokeWidth="2"/>
+                  <text x="100" y="65" textAnchor="middle" fill="#818cf8" fontSize="12" fontWeight="bold">
+                    {lang === 'en' ? 'Parent' : '母'}
+                  </text>
+
+                  <line x1="130" y1="60" x2="220" y2="60" stroke="#c084fc" strokeWidth="2"/>
+                  <polygon points="220,60 210,55 210,65" fill="#c084fc"/>
+
+                  <circle cx="280" cy="30" r="25" fill="#c084fc" opacity="0.3" stroke="#c084fc" strokeWidth="2"/>
+                  <text x="280" y="35" textAnchor="middle" fill="#c084fc" fontSize="11" fontWeight="bold">
+                    {lang === 'en' ? 'Child 1' : '子 1'}
+                  </text>
+
+                  <circle cx="280" cy="60" r="25" fill="#c084fc" opacity="0.3" stroke="#c084fc" strokeWidth="2"/>
+                  <text x="280" y="65" textAnchor="middle" fill="#c084fc" fontSize="11" fontWeight="bold">
+                    {lang === 'en' ? 'Child 2' : '子 2'}
+                  </text>
+
+                  <circle cx="280" cy="90" r="25" fill="#c084fc" opacity="0.3" stroke="#c084fc" strokeWidth="2"/>
+                  <text x="280" y="95" textAnchor="middle" fill="#c084fc" fontSize="11" fontWeight="bold">
+                    {lang === 'en' ? 'Child 3' : '子 3'}
+                  </text>
+                </svg>
+              </div>
+            </AnimatedElement>
+
+            <div className="grid grid-cols-3 gap-6 max-w-4xl">
+              <AnimatedElement visible={visible} delay={100} index={1}>
+                <div className="p-6 rounded-lg bg-slate-900/50 border border-indigo-400/30">
+                  <p className="text-sm text-slate-300 mb-2">
+                    {t('slide8_card1', { en: 'Parent Skill automatically holds equity in derived Skills', zh: '母 Skill 自动获得衍生 Skill 的股权' })}
+                  </p>
+                </div>
+              </AnimatedElement>
+
+              <AnimatedElement visible={visible} delay={100} index={2}>
+                <div className="p-6 rounded-lg bg-slate-900/50 border border-purple-400/30">
+                  <p className="text-sm text-slate-300 mb-2">
+                    {t('slide8_card2', { en: 'Capabilities and equity transfer across generations', zh: '能力与股权关系代际传递' })}
+                  </p>
+                </div>
+              </AnimatedElement>
+
+              <AnimatedElement visible={visible} delay={100} index={3}>
+                <div className="p-6 rounded-lg bg-slate-900/50 border border-pink-400/30">
+                  <p className="text-sm text-slate-300 mb-2">
+                    {t('slide8_card3', { en: 'One hit Skill spawns entire asset families', zh: '一个爆款 Skill 能衍生出整个资产族群' })}
+                  </p>
+                </div>
+              </AnimatedElement>
+            </div>
+          </div>
+        </SlideContainer>
+      )
+    },
+    {
+      id: 'trust',
+      render: (visible) => (
+        <SlideContainer visible={visible}>
+          <div className="absolute inset-0 flex flex-col items-center justify-center px-12 py-16">
+            <div className="absolute top-8 left-8">
+              <MinusAiLogo size={40} />
+            </div>
+
+            <GradientText size="text-5xl" className="mb-2">
+              {t('slide9_title', { en: 'Trust & Safety', zh: '信任与安全' })}
+            </GradientText>
+
+            <div className="grid grid-cols-3 gap-6 mb-12 max-w-4xl">
+              <AnimatedElement visible={visible} delay={100} index={0}>
+                <div className="p-6 rounded-lg bg-slate-900/50 border border-indigo-400/30">
+                  <div className="text-3xl mb-3">🔍</div>
+                  <h3 className="font-bold text-indigo-400 mb-2">
+                    {t('slide9_audit_title', { en: 'Automated Audit', zh: '自动化审计' })}
+                  </h3>
+                  <p className="text-sm text-slate-300">
+                    {t('slide9_audit_desc', { en: 'Security scanning before listing', zh: '上架前安全扫描' })}
+                  </p>
+                </div>
+              </AnimatedElement>
+
+              <AnimatedElement visible={visible} delay={100} index={1}>
+                <div className="p-6 rounded-lg bg-slate-900/50 border border-purple-400/30">
+                  <div className="text-3xl mb-3">👥</div>
+                  <h3 className="font-bold text-purple-400 mb-2">
+                    {t('slide9_review_title', { en: 'Independent Review Board', zh: '独立审查委员会' })}
+                  </h3>
+                  <p className="text-sm text-slate-300">
+                    {t('slide9_review_desc', { en: 'No conflict of interest', zh: '无利益冲突' })}
+                  </p>
+                </div>
+              </AnimatedElement>
+
+              <AnimatedElement visible={visible} delay={100} index={2}>
+                <div className="p-6 rounded-lg bg-slate-900/50 border border-pink-400/30">
+                  <div className="text-3xl mb-3">🔗</div>
+                  <h3 className="font-bold text-pink-400 mb-2">
+                    {t('slide9_chain_title', { en: 'On-Chain Transparency', zh: '链上透明' })}
+                  </h3>
+                  <p className="text-sm text-slate-300">
+                    {t('slide9_chain_desc', { en: 'All revenue & distributions auditable', zh: '所有收入与分配可审计' })}
+                  </p>
+                </div>
+              </AnimatedElement>
+            </div>
+
+            <p className="text-lg text-slate-300 text-center mb-8 font-bold">
+              {t('slide9_anti_spec', { en: 'Anti-Speculation Features', zh: '反投机特性' })}
+            </p>
+
+            <div className="grid grid-cols-3 gap-6 max-w-4xl">
+              <AnimatedElement visible={visible} delay={100} index={3}>
+                <div className="p-6 rounded-lg bg-slate-900/50 border border-indigo-400/30">
+                  <p className="text-sm text-indigo-400 font-bold mb-2">
+                    {t('slide9_call_title', { en: 'Call Pattern Detection', zh: '调用模式检测' })}
+                  </p>
+                  <p className="text-xs text-slate-400">
+                    {t('slide9_call_desc', { en: 'Bot detection', zh: '机器人检测' })}
+                  </p>
+                </div>
+              </AnimatedElement>
+
+              <AnimatedElement visible={visible} delay={100} index={4}>
+                <div className="p-6 rounded-lg bg-slate-900/50 border border-purple-400/30">
+                  <p className="text-sm text-purple-400 font-bold mb-2">
+                    {t('slide9_decay_title', { en: 'Marginal Return Decay', zh: '边际回报递减' })}
+                  </p>
+                  <p className="text-xs text-slate-400">
+                    {t('slide9_decay_desc', { en: 'Diminishing returns', zh: '回报递减' })}
+                  </p>
+                </div>
+              </AnimatedElement>
+
+              <AnimatedElement visible={visible} delay={100} index={5}>
+                <div className="p-6 rounded-lg bg-slate-900/50 border border-pink-400/30">
+                  <p className="text-sm text-pink-400 font-bold mb-2">
+                    {t('slide9_verify_title', { en: 'Downstream Value Verification', zh: '下游价值验证' })}
+                  </p>
+                  <p className="text-xs text-slate-400">
+                    {t('slide9_verify_desc', { en: 'Output value tracking', zh: '输出价值追踪' })}
+                  </p>
+                </div>
+              </AnimatedElement>
+            </div>
+          </div>
+        </SlideContainer>
+      )
+    },
+    {
+      id: 'agents',
+      render: (visible) => (
+        <SlideContainer visible={visible}>
+          <div className="absolute inset-0 flex flex-col items-center justify-center px-12 py-16">
+            <div className="absolute top-8 left-8">
+              <MinusAiLogo size={40} />
+            </div>
+
+            <GradientText size="text-5xl" className="mb-2">
+              {t('slide10_title', { en: 'Agent Integration', zh: 'Agent 集成' })}
+            </GradientText>
+            <p className="text-2xl text-purple-300 mb-12">
+              {t('slide10_subtitle', { en: 'AI Agent Participation', zh: 'AI Agent 参与' })}
+            </p>
+
+            <div className="max-w-3xl mb-12">
+              <div className="space-y-4">
+                <AnimatedElement visible={visible} delay={100} index={0}>
+                  <div className="p-6 rounded-lg bg-gradient-to-r from-indigo-500/20 to-indigo-500/10 border border-indigo-400/30">
+                    <div className="flex items-center gap-4">
+                      <div className="flex-shrink-0">
+                        <div className="text-3xl font-bold text-indigo-400">Tier 1</div>
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-lg font-bold text-slate-200">
+                          {t('slide10_tier1_title', { en: 'Observe', zh: '观察' })}
+                        </p>
+                        <p className="text-sm text-slate-400">
+                          {t('slide10_tier1_desc', { en: 'Monitor, recommend, no transactions', zh: '监控、推荐、不执行交易' })}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </AnimatedElement>
+
+                <AnimatedElement visible={visible} delay={100} index={1}>
+                  <div className="p-6 rounded-lg bg-gradient-to-r from-purple-500/20 to-purple-500/10 border border-purple-400/30">
+                    <div className="flex items-center gap-4">
+                      <div className="flex-shrink-0">
+                        <div className="text-3xl font-bold text-purple-400">Tier 2</div>
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-lg font-bold text-slate-200">
+                          {t('slide10_tier2_title', { en: 'Suggest', zh: '建议' })}
+                        </p>
+                        <p className="text-sm text-slate-400">
+                          {t('slide10_tier2_desc', { en: 'Propose actions, require confirmation', zh: '提出操作、需要确认' })}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </AnimatedElement>
+
+                <AnimatedElement visible={visible} delay={100} index={2}>
+                  <div className="p-6 rounded-lg bg-gradient-to-r from-pink-500/20 to-pink-500/10 border border-pink-400/30">
+                    <div className="flex items-center gap-4">
+                      <div className="flex-shrink-0">
+                        <div className="text-3xl font-bold text-pink-400">Tier 3</div>
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-lg font-bold text-slate-200">
+                          {t('slide10_tier3_title', { en: 'Autonomous', zh: '自主' })}
+                        </p>
+                        <p className="text-sm text-slate-400">
+                          {t('slide10_tier3_desc', { en: 'Operate within user rules', zh: '在用户规则内自主操作' })}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </AnimatedElement>
+              </div>
+            </div>
+
+            <div className="space-y-4 max-w-3xl">
+              <AnimatedElement visible={visible} delay={100} index={3}>
+                <div className="p-6 rounded-lg bg-slate-900/50 border border-indigo-400/30">
+                  <p className="text-slate-300">
+                    {t('slide10_delegation', { en: 'Users can delegate Skill discovery, evaluation, and investment to AI Agents', zh: '用户可将 Skill 发现、评估甚至投资委托给 AI Agent' })}
+                  </p>
+                </div>
+              </AnimatedElement>
+
+              <AnimatedElement visible={visible} delay={100} index={4}>
+                <div className="p-6 rounded-lg bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-400/30">
+                  <p className="text-slate-300">
+                    {t('slide10_auditable', { en: 'All Agent actions recorded on-chain, fully auditable', zh: '所有 Agent 操作均记录在链上，完全可审计' })}
+                  </p>
+                </div>
+              </AnimatedElement>
+            </div>
+          </div>
+        </SlideContainer>
+      )
+    },
+    {
+      id: 'tech',
+      render: (visible) => (
+        <SlideContainer visible={visible}>
+          <div className="absolute inset-0 flex flex-col items-center justify-center px-12 py-16">
+            <div className="absolute top-8 left-8">
+              <MinusAiLogo size={40} />
+            </div>
+
+            <GradientText size="text-5xl" className="mb-2">
+              {t('slide11_title', { en: 'Infrastructure', zh: '基础设施' })}
+            </GradientText>
+            <p className="text-2xl text-purple-300 mb-12">
+              {t('slide11_subtitle', { en: 'Technology & Compliance', zh: '技术与合规' })}
+            </p>
+
+            <div className="grid grid-cols-2 gap-12 max-w-5xl mb-12">
+              <AnimatedElement visible={visible} delay={100} index={0}>
+                <div className="p-8 rounded-lg bg-slate-900/50 border border-indigo-400/30">
+                  <h3 className="text-2xl font-bold text-indigo-400 mb-6">Tech Stack</h3>
+                  <div className="space-y-3 text-sm text-slate-300">
+                    <div className="p-3 rounded bg-slate-800/50">
+                      <p className="text-indigo-300 font-bold">Base/Arbitrum L2</p>
+                      <p className="text-xs text-slate-400">gas &lt; $0.01</p>
+                    </div>
+                    <div className="p-3 rounded bg-slate-800/50">
+                      <p className="text-purple-300 font-bold">ERC-721 + ERC-20</p>
+                      <p className="text-xs text-slate-400">Skill Registry & Share Tokens</p>
+                    </div>
+                    <div className="p-3 rounded bg-slate-800/50">
+                      <p className="text-pink-300 font-bold">Account Abstraction</p>
+                      <p className="text-xs text-slate-400">ERC-4337</p>
+                    </div>
+                    <div className="p-3 rounded bg-slate-800/50">
+                      <p className="text-indigo-300 font-bold">Privy / Dynamic</p>
+                      <p className="text-xs text-slate-400">Login & Stripe/MoonPay</p>
+                    </div>
+                  </div>
+                </div>
+              </AnimatedElement>
+
+              <AnimatedElement visible={visible} delay={100} index={1}>
+                <div className="p-8 rounded-lg bg-slate-900/50 border border-pink-400/30">
+                  <h3 className="text-2xl font-bold text-pink-400 mb-6">Compliance</h3>
+                  <div className="space-y-3 text-sm text-slate-300">
+                    <div className="p-3 rounded bg-slate-800/50">
+                      <p className="text-indigo-300 font-bold">Phase 1</p>
+                      <p className="text-xs text-slate-400">SC Credit closed-loop (no withdrawal)</p>
+                    </div>
+                    <div className="p-3 rounded bg-slate-800/50">
+                      <p className="text-purple-300 font-bold">Phase 2</p>
+                      <p className="text-xs text-slate-400">VARA/ADGM sandbox</p>
+                    </div>
+                    <div className="p-3 rounded bg-slate-800/50">
+                      <p className="text-pink-300 font-bold">Phase 3</p>
+                      <p className="text-xs text-slate-400">Full VASP license</p>
+                    </div>
+                  </div>
+                </div>
+              </AnimatedElement>
+            </div>
+
+            <AnimatedElement visible={visible} delay={100} index={2}>
+              <div className="p-8 rounded-lg bg-gradient-to-r from-indigo-500/10 to-purple-500/10 border border-indigo-400/30 max-w-3xl text-center">
+                <p className="text-slate-300 mb-2">
+                  {t('slide11_tech_layer', { en: 'Technology layer is Web3, experience layer is Web2.', zh: '技术层是 Web3，体验层是 Web2。' })}
+                </p>
+                <p className="text-slate-200 font-bold">
+                  {t('slide11_user_experience', { en: 'Users never need to know they\'re interacting with a blockchain.', zh: '用户永远不需要知道自己在与区块链交互。' })}
+                </p>
+              </div>
+            </AnimatedElement>
+          </div>
+        </SlideContainer>
+      )
+    },
+    {
+      id: 'flywheel',
+      render: (visible) => (
+        <SlideContainer visible={visible}>
+          <div className="absolute inset-0 flex flex-col items-center justify-center px-12 py-16">
+            <div className="absolute top-8 left-8">
+              <MinusAiLogo size={40} />
+            </div>
+
+            <GradientText size="text-5xl" className="mb-4">
+              {t('slide12_title', { en: 'The Flywheel', zh: '飞轮' })}
+            </GradientText>
+            <p className="text-2xl text-purple-300 mb-12">
+              {t('slide12_subtitle', { en: 'Self-Reinforcing Growth', zh: '自增长飞轮' })}
+            </p>
+
+            {/* Flywheel diagram — 3 nodes on equilateral triangle, circular arrows */}
+            <AnimatedElement visible={visible} delay={100} index={0}>
+              <div className="mb-10">
+                <svg width="360" height="320" viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <marker id="arrowFly" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                      <polygon points="0 0, 8 3, 0 6" fill="#a78bfa"/>
+                    </marker>
+                  </defs>
+
+                  {/* Faint circular guide */}
+                  <circle cx="180" cy="160" r="100" fill="none" stroke="#818cf8" strokeWidth="1" opacity="0.12"/>
+
+                  {/* Curved arrows along the circle: Use → Own → Spread → Use */}
+                  {/* Arc from Use(−90°+20°=−70°) to Own(30°−20°=10°), r=100, clockwise */}
+                  <path d="M 214 66 A 100 100 0 0 1 278 177" fill="none" stroke="#a78bfa" strokeWidth="2.5" markerEnd="url(#arrowFly)" opacity="0.6"/>
+                  {/* Arc from Own(30°+20°=50°) to Spread(150°−20°=130°), r=100, clockwise */}
+                  <path d="M 244 237 A 100 100 0 0 1 116 237" fill="none" stroke="#a78bfa" strokeWidth="2.5" markerEnd="url(#arrowFly)" opacity="0.6"/>
+                  {/* Arc from Spread(150°+20°=170°) to Use(270°−20°=250°), r=100, clockwise */}
+                  <path d="M 82 177 A 100 100 0 0 1 146 66" fill="none" stroke="#a78bfa" strokeWidth="2.5" markerEnd="url(#arrowFly)" opacity="0.6"/>
+
+                  {/* Node: Use (top center) */}
+                  <circle cx="180" cy="60" r="30" fill="#818cf8" opacity="0.15" stroke="#818cf8" strokeWidth="2"/>
+                  <text x="180" y="55" textAnchor="middle" fill="#c4b5fd" fontSize="18">⚡</text>
+                  <text x="180" y="73" textAnchor="middle" fill="#818cf8" fontSize="13" fontWeight="bold">
+                    {lang === 'en' ? 'Use' : '使用'}
+                  </text>
+
+                  {/* Node: Own (bottom-right) */}
+                  <circle cx="267" cy="215" r="30" fill="#c084fc" opacity="0.15" stroke="#c084fc" strokeWidth="2"/>
+                  <text x="267" y="210" textAnchor="middle" fill="#d8b4fe" fontSize="18">💎</text>
+                  <text x="267" y="228" textAnchor="middle" fill="#c084fc" fontSize="13" fontWeight="bold">
+                    {lang === 'en' ? 'Own' : '持有'}
+                  </text>
+
+                  {/* Node: Spread (bottom-left) */}
+                  <circle cx="93" cy="215" r="30" fill="#f472b6" opacity="0.15" stroke="#f472b6" strokeWidth="2"/>
+                  <text x="93" y="210" textAnchor="middle" fill="#f9a8d4" fontSize="18">🔥</text>
+                  <text x="93" y="228" textAnchor="middle" fill="#f472b6" fontSize="13" fontWeight="bold">
+                    {lang === 'en' ? 'Spread' : '传播'}
+                  </text>
+
+                  {/* Edge labels */}
+                  <text x="260" y="125" textAnchor="middle" fill="#94a3b8" fontSize="10" opacity="0.7">
+                    {lang === 'en' ? 'fees → value ↑' : '费用→价值↑'}
+                  </text>
+                  <text x="180" y="290" textAnchor="middle" fill="#94a3b8" fontSize="10" opacity="0.7">
+                    {lang === 'en' ? 'value ↑ → share & spread' : '价值↑→分享传播'}
+                  </text>
+                  <text x="95" y="125" textAnchor="middle" fill="#94a3b8" fontSize="10" opacity="0.7">
+                    {lang === 'en' ? 'new users → usage ↑' : '新用户→使用↑'}
+                  </text>
+
+                  {/* Center label */}
+                  <text x="180" y="165" textAnchor="middle" fill="#e2e8f0" fontSize="13" fontWeight="bold" opacity="0.4">
+                    FLYWHEEL
+                  </text>
+                </svg>
+              </div>
+            </AnimatedElement>
+
+            {/* Two key insights side by side */}
+            <div className="flex gap-4 max-w-3xl w-full mb-8">
+              <AnimatedElement visible={visible} delay={100} index={1}>
+                <div className="flex-1 p-4 rounded-lg bg-slate-900/50 border border-indigo-400/30 text-center">
+                  <p className="text-slate-300 text-sm">
+                    {t('slide12_no_investors', { en: 'No need to \'bring investors in\' — usage itself IS the growth engine', zh: '不需要\'拉投资人进场\'——使用本身就是增长引擎' })}
+                  </p>
+                </div>
+              </AnimatedElement>
+
+              <AnimatedElement visible={visible} delay={100} index={2}>
+                <div className="flex-1 p-4 rounded-lg bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-400/30 text-center">
+                  <p className="text-slate-300 text-sm">
+                    {t('slide12_growth_engine', { en: 'Every user is a potential owner, every owner is a distributor', zh: '每个用户都是潜在持有者，每个持有者都是传播者' })}
+                  </p>
+                </div>
+              </AnimatedElement>
+            </div>
+
+            {/* Roadmap — horizontal timeline */}
+            <AnimatedElement visible={visible} delay={100} index={3}>
+              <p className="text-lg text-slate-300 text-center mb-4 font-bold">
+                {t('slide12_roadmap', { en: 'Roadmap', zh: '路线图' })}
+              </p>
+              <div className="flex gap-3 max-w-4xl">
+                {[
+                  { period: 'M1', color: 'border-indigo-400/30', accent: 'text-indigo-400', en: 'MVP on mainnet, 20+ education pieces', zh: 'MVP上线主网, 20+教育内容' },
+                  { period: 'M2-3', color: 'border-purple-400/30', accent: 'text-purple-400', en: '200 Skills, 2K users, $50K vol', zh: '200 Skills, 2K用户, $50K交易量' },
+                  { period: 'M4-6', color: 'border-pink-400/30', accent: 'text-pink-400', en: '1K Skills, 10K users, $200K/mo', zh: '1K Skills, 1万用户, $200K/月' },
+                  { period: 'Y1', color: 'border-indigo-400/30', accent: 'text-indigo-400', en: '5K+ Skills, 50K+ users, $1M+/mo', zh: '5K+ Skills, 5万+用户, $1M+/月' },
+                ].map((m, i) => (
+                  <div key={i} className={`flex-1 p-3 rounded-lg bg-slate-900/50 border ${m.color} text-xs`}>
+                    <p className={`font-bold ${m.accent} mb-1`}>{m.period}</p>
+                    <p className="text-slate-400">{lang === 'en' ? m.en : m.zh}</p>
+                  </div>
+                ))}
+              </div>
+            </AnimatedElement>
+          </div>
+        </SlideContainer>
+      )
+    },
+    {
+      id: 'closer',
+      render: (visible) => (
+        <SlideContainer visible={visible}>
+          <div className="absolute inset-0 flex flex-col items-center justify-center px-12 py-16">
+            <div className="absolute top-8 left-8">
+              <MinusAiLogo size={50} />
+            </div>
+
+            <AnimatedElement visible={visible} delay={200} index={0}>
+              <GradientText size="text-7xl" className="text-center mb-4">
+                {t('slide13_headline', { en: 'Own the AI Skill Economy.', zh: '掌握 AI Skill 所有权经济。' })}
+              </GradientText>
+            </AnimatedElement>
+
+            <AnimatedElement visible={visible} delay={200} index={1}>
+              <p className="text-2xl text-purple-300/80 text-center mb-16">
+                {t('slide13_tagline', { en: 'The gateway to AI Skill ownership economics.', zh: '掌握 AI Skill 所有权经济的入口。' })}
+              </p>
+            </AnimatedElement>
+
+            <AnimatedElement visible={visible} delay={200} index={2}>
+              <div className="mb-6 px-10 py-4 rounded-xl bg-gradient-to-r from-indigo-500/10 to-pink-500/10 border border-indigo-400/30 text-center">
+                <p className="text-3xl font-bold text-white tracking-wide">Coming in Spring 2026</p>
+              </div>
+            </AnimatedElement>
+
+            <AnimatedElement visible={visible} delay={200} index={3}>
+              <div className="mb-16 px-8 py-3 rounded-lg bg-gradient-to-r from-indigo-500 to-pink-500 font-bold text-slate-900 text-lg tracking-wide">
+                skillcap.ai
+              </div>
+            </AnimatedElement>
+
+            <AnimatedElement visible={visible} delay={200} index={4}>
+              <div className="space-y-1 text-center opacity-60">
+                <p className="text-base text-slate-300">Linda Cai</p>
+                <p className="text-sm text-indigo-400/80">lcai@minus-ai.com</p>
+              </div>
+            </AnimatedElement>
+          </div>
+        </SlideContainer>
+      )
+    }
+  ];
+
+  const goToSlide = useCallback((index) => {
+    if (index >= 0 && index < SLIDES.length) {
+      setCurrent(index);
+    }
+  }, [SLIDES.length]);
+
+  const nextSlide = useCallback(() => {
+    goToSlide(current + 1);
+    setDirection(1);
+  }, [current, goToSlide]);
+
+  const prevSlide = useCallback(() => {
+    goToSlide(current - 1);
+    setDirection(-1);
+  }, [current, goToSlide]);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        prevSlide();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [nextSlide, prevSlide]);
+
+  return (
+    <div className="relative w-full h-screen overflow-hidden font-sans"
+         style={{ background: 'linear-gradient(180deg, #0a0a0f 0%, #0f0f1a 100%)' }}>
+      <GridOverlay />
+      <LanguageToggle lang={lang} onToggle={setLang} />
+
+      <div className="relative w-full h-full">
+        {SLIDES.map((slide, idx) => (
+          <div
+            key={slide.id}
+            className={`absolute inset-0 transition-all duration-700 ${
+              idx === current ? 'z-10' : idx < current ? '-z-10' : 'z-0'
+            }`}
+          >
+            {slide.render(idx === current)}
+          </div>
+        ))}
+      </div>
+
+      <SlideNav current={current} total={SLIDES.length} onGoTo={goToSlide} />
+
+      <button
+        onClick={nextSlide}
+        disabled={current >= SLIDES.length - 1}
+        className="absolute bottom-12 right-20 z-20 px-6 py-2 rounded-lg bg-indigo-500/20 border border-indigo-400/50 text-indigo-300 hover:bg-indigo-500/30 disabled:opacity-30 transition text-sm font-bold"
+      >
+        Next →
+      </button>
+
+      <button
+        onClick={prevSlide}
+        disabled={current === 0}
+        className="absolute bottom-12 left-6 z-20 px-6 py-2 rounded-lg bg-slate-700/20 border border-slate-600/50 text-slate-300 hover:bg-slate-700/30 disabled:opacity-30 transition text-sm font-bold"
+      >
+        ← Back
+      </button>
+
+      <div
+        className="absolute inset-0 cursor-pointer z-0"
+        onClick={nextSlide}
+      />
+    </div>
+  );
+}
+
+
+        // Render the component
+        const container = document.getElementById('root');
+        const root = createRoot(container);
+        root.render(<SkillCapPitch />);
+    </script>
+</body>
+</html>
