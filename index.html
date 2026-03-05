@@ -17,6 +17,7 @@
             margin: 0;
             padding: 0;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            overflow-x: hidden;
         }
     </style>
 </head>
@@ -36,7 +37,7 @@ const MinusAiLogo = ({ size = 40 }) => (
   </div>
 );
 
-const GradientText = ({ children, size = 'text-4xl', className = '' }) => (
+const GradientText = ({ children, size = 'text-xl md:text-4xl', className = '' }) => (
   <span className={`${size} font-bold bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent ${className}`}>
     {children}
   </span>
@@ -70,8 +71,8 @@ const SlideNav = ({ current, total, onGoTo }) => (
           onClick={(e) => { e.stopPropagation(); onGoTo(i); }}
           className={`relative group transition-all duration-300 rounded-full ${
             i === current
-              ? 'w-8 h-3 bg-gradient-to-r from-indigo-400 to-pink-400'
-              : 'w-3 h-3 bg-slate-700 hover:bg-slate-500'
+              ? 'w-6 h-2 md:w-8 md:h-3 bg-gradient-to-r from-indigo-400 to-pink-400'
+              : 'w-2 h-2 md:w-3 md:h-3 bg-slate-700 hover:bg-slate-500'
           }`}
         >
           <span className={`absolute -top-8 left-1/2 -translate-x-1/2 text-xs px-2 py-1 rounded bg-slate-800 border border-slate-700 whitespace-nowrap opacity-0 group-hover:opacity-100 transition pointer-events-none ${
@@ -89,7 +90,7 @@ const SlideNav = ({ current, total, onGoTo }) => (
 );
 
 const LanguageToggle = ({ lang, onToggle }) => (
-  <div className="fixed top-8 right-8 z-50 flex gap-2 items-center px-4 py-2 rounded-full bg-slate-900/60 border border-indigo-400/30 backdrop-blur-sm">
+  <div className="fixed top-4 right-4 md:top-8 md:right-8 z-50 flex gap-2 items-center px-4 py-2 rounded-full bg-slate-900/60 border border-indigo-400/30 backdrop-blur-sm">
     <button
       onClick={() => onToggle('en')}
       className={`px-3 py-1 rounded-full text-sm font-bold transition ${
@@ -144,12 +145,12 @@ function SkillCapPitch() {
       render: (visible) => (
         <SlideContainer visible={visible}>
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <div className="absolute top-8 left-8">
+            <div className="absolute top-4 left-4 md:top-8 md:left-8">
               <MinusAiLogo size={50} />
             </div>
 
             <AnimatedElement visible={visible} delay={200} index={0}>
-              <GradientText size="text-8xl" className="font-black leading-tight">
+              <GradientText size="text-4xl md:text-8xl" className="font-black leading-tight">
                 SkillCap.ai
               </GradientText>
             </AnimatedElement>
@@ -187,12 +188,12 @@ function SkillCapPitch() {
       id: 'axioms',
       render: (visible) => (
         <SlideContainer visible={visible}>
-          <div className="absolute inset-0 flex flex-col items-center justify-center px-12">
-            <div className="absolute top-8 left-8">
+          <div className="absolute inset-0 flex flex-col items-center justify-center px-4 md:px-12">
+            <div className="absolute top-4 left-4 md:top-8 md:left-8">
               <MinusAiLogo size={40} />
             </div>
 
-            <GradientText size="text-5xl" className="mb-16">
+            <GradientText size="text-2xl md:text-5xl" className="mb-8 md:mb-16">
               {t('slide2_title', { en: 'First Principles', zh: '核心公理' })}
             </GradientText>
 
@@ -237,8 +238,8 @@ function SkillCapPitch() {
 
               <AnimatedElement visible={visible} delay={100} index={4}>
                 <div className="mt-8 p-8 rounded-lg bg-gradient-to-r from-indigo-500/10 to-pink-500/10 border border-indigo-400/30">
-                  <p className="text-3xl font-black text-center">
-                    <GradientText size="text-3xl">
+                  <p className="text-xl md:text-3xl font-black text-center">
+                    <GradientText size="text-xl md:text-3xl">
                       {t('slide2_conclusion', { en: '"To use is to invest."', zh: '"使用即投资。"' })}
                     </GradientText>
                   </p>
@@ -253,16 +254,16 @@ function SkillCapPitch() {
       id: 'worldview',
       render: (visible) => (
         <SlideContainer visible={visible}>
-          <div className="absolute inset-0 flex flex-col items-center justify-center px-12 py-16">
-            <div className="absolute top-8 left-8">
+          <div className="absolute inset-0 flex flex-col items-center justify-center px-4 py-8 md:px-12 md:py-16">
+            <div className="absolute top-4 left-4 md:top-8 md:left-8">
               <MinusAiLogo size={40} />
             </div>
 
-            <GradientText size="text-5xl" className="mb-12">
+            <GradientText size="text-2xl md:text-5xl" className="mb-6 md:mb-12">
               {t('slide_wv_title', { en: 'Worldview & Principles', zh: '世界观与原则' })}
             </GradientText>
 
-            <div className="grid grid-cols-2 gap-10 max-w-5xl w-full">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-10 max-w-5xl w-full">
               {/* Left: Worldview as causal chain */}
               <div>
                 <AnimatedElement visible={visible} delay={100} index={0}>
@@ -361,17 +362,17 @@ function SkillCapPitch() {
       id: 'problem',
       render: (visible) => (
         <SlideContainer visible={visible}>
-          <div className="absolute inset-0 flex flex-col items-center justify-center px-12 py-16">
-            <div className="absolute top-8 left-8">
+          <div className="absolute inset-0 flex flex-col items-center justify-center px-4 py-8 md:px-12 md:py-16">
+            <div className="absolute top-4 left-4 md:top-8 md:left-8">
               <MinusAiLogo size={40} />
             </div>
 
-            <GradientText size="text-5xl" className="mb-4">
+            <GradientText size="text-2xl md:text-5xl" className="mb-4">
               {t('slide3_title', { en: 'The Problem', zh: '问题' })}
             </GradientText>
 
             <AnimatedElement visible={visible} delay={100} index={0}>
-              <p className="text-xl text-slate-300 text-center max-w-3xl mb-12">
+              <p className="text-xl text-slate-300 text-center max-w-3xl mb-6 md:mb-12">
                 {lang === 'en' ? (
                   <>
                     AI Skills Are the Next Trillion-Dollar Asset Class.<br/>
@@ -386,7 +387,7 @@ function SkillCapPitch() {
               </p>
             </AnimatedElement>
 
-            <div className="grid grid-cols-3 gap-6 mb-12 max-w-5xl">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-6 md:mb-12 max-w-5xl">
               <AnimatedElement visible={visible} delay={100} index={1}>
                 <div className="p-6 rounded-lg bg-slate-900/50 border border-indigo-400/30 hover:border-indigo-400/60 transition">
                   <div className="mb-3">
@@ -453,12 +454,12 @@ function SkillCapPitch() {
       id: 'solution',
       render: (visible) => (
         <SlideContainer visible={visible}>
-          <div className="absolute inset-0 flex flex-col items-center justify-center px-12 py-16">
-            <div className="absolute top-8 left-8">
+          <div className="absolute inset-0 flex flex-col items-center justify-center px-4 py-8 md:px-12 md:py-16">
+            <div className="absolute top-4 left-4 md:top-8 md:left-8">
               <MinusAiLogo size={40} />
             </div>
 
-            <GradientText size="text-5xl" className="mb-4">
+            <GradientText size="text-2xl md:text-5xl" className="mb-4">
               {t('slide4_title', { en: 'The Solution', zh: '解决方案' })}
             </GradientText>
 
@@ -468,7 +469,7 @@ function SkillCapPitch() {
               </p>
             </AnimatedElement>
 
-            <div className="grid grid-cols-4 gap-6 max-w-5xl mb-12">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 max-w-5xl mb-6 md:mb-12">
               {[
                 {
                   num: '01',
@@ -534,19 +535,19 @@ function SkillCapPitch() {
       id: 'ecosystem',
       render: (visible) => (
         <SlideContainer visible={visible}>
-          <div className="absolute inset-0 flex flex-col items-center justify-center px-12 py-16">
-            <div className="absolute top-8 left-8">
+          <div className="absolute inset-0 flex flex-col items-center justify-center px-4 py-8 md:px-12 md:py-16">
+            <div className="absolute top-4 left-4 md:top-8 md:left-8">
               <MinusAiLogo size={40} />
             </div>
 
-            <GradientText size="text-5xl" className="mb-2">
+            <GradientText size="text-2xl md:text-5xl" className="mb-2">
               {t('slideEco_title', { en: 'Ecosystem Architecture', zh: '生态架构' })}
             </GradientText>
             <p className="text-slate-400 text-lg mb-6">
               {t('slideEco_subtitle', { en: '3 Entities × 2 Dimensions × 7 Relationships', zh: '3 类实体 × 2 个维度 × 7 种关系' })}
             </p>
 
-            <div className="w-full max-w-5xl flex gap-6">
+            <div className="w-full max-w-5xl flex flex-col md:flex-row gap-3 md:gap-6">
               {/* Left: Three Entities */}
               <AnimatedElement visible={visible} delay={200} index={0}>
                 <div className="flex-1 flex flex-col gap-3">
@@ -646,11 +647,11 @@ function SkillCapPitch() {
       render: (visible) => (
         <SlideContainer visible={visible}>
           <div className="absolute inset-0 flex flex-col items-center justify-center px-10 py-14">
-            <div className="absolute top-8 left-8">
+            <div className="absolute top-4 left-4 md:top-8 md:left-8">
               <MinusAiLogo size={40} />
             </div>
 
-            <GradientText size="text-5xl" className="mb-2">
+            <GradientText size="text-2xl md:text-5xl" className="mb-2">
               {t('slide6_title', { en: 'Ownership Structure', zh: '所有权结构' })}
             </GradientText>
             <p className="text-xl text-purple-300 mb-8">
@@ -744,19 +745,19 @@ function SkillCapPitch() {
       id: 'market-structure',
       render: (visible) => (
         <SlideContainer visible={visible}>
-          <div className="absolute inset-0 flex flex-col items-center justify-center px-12 py-16">
-            <div className="absolute top-8 left-8">
+          <div className="absolute inset-0 flex flex-col items-center justify-center px-4 py-8 md:px-12 md:py-16">
+            <div className="absolute top-4 left-4 md:top-8 md:left-8">
               <MinusAiLogo size={40} />
             </div>
 
-            <GradientText size="text-5xl" className="mb-2">
+            <GradientText size="text-2xl md:text-5xl" className="mb-2">
               {t('slide6_title', { en: 'Market Structure', zh: '市场结构' })}
             </GradientText>
-            <p className="text-2xl text-purple-300 mb-10">
+            <p className="text-2xl text-purple-300 mb-6 md:mb-10">
               {t('slide6_subtitle', { en: 'Two-Phase Market', zh: '两阶段市场' })}
             </p>
 
-            <div className="grid grid-cols-2 gap-10 max-w-5xl w-full">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-10 max-w-5xl w-full">
               {/* Left column - PRIMARY MARKET */}
               <AnimatedElement visible={visible} delay={100} index={0}>
                 <div className="p-6 rounded-lg bg-slate-900/50 border border-indigo-400/30 h-full">
@@ -887,15 +888,15 @@ function SkillCapPitch() {
       id: 'pnl',
       render: (visible) => (
         <SlideContainer visible={visible}>
-          <div className="absolute inset-0 flex flex-col items-center justify-center px-12 py-16">
-            <div className="absolute top-8 left-8">
+          <div className="absolute inset-0 flex flex-col items-center justify-center px-4 py-8 md:px-12 md:py-16">
+            <div className="absolute top-4 left-4 md:top-8 md:left-8">
               <MinusAiLogo size={40} />
             </div>
 
-            <GradientText size="text-5xl" className="mb-2">
+            <GradientText size="text-2xl md:text-5xl" className="mb-2">
               {t('slide7_title', { en: 'Skill P&L', zh: 'Skill 损益表' })}
             </GradientText>
-            <p className="text-2xl text-purple-300 mb-10">
+            <p className="text-2xl text-purple-300 mb-6 md:mb-10">
               {t('slide7_subtitle', { en: 'Every Skill has its own income statement', zh: '每个 Skill 都有损益表' })}
             </p>
 
@@ -1007,20 +1008,20 @@ function SkillCapPitch() {
       id: 'fission',
       render: (visible) => (
         <SlideContainer visible={visible}>
-          <div className="absolute inset-0 flex flex-col items-center justify-center px-12 py-16">
-            <div className="absolute top-8 left-8">
+          <div className="absolute inset-0 flex flex-col items-center justify-center px-4 py-8 md:px-12 md:py-16">
+            <div className="absolute top-4 left-4 md:top-8 md:left-8">
               <MinusAiLogo size={40} />
             </div>
 
-            <GradientText size="text-5xl" className="mb-4">
+            <GradientText size="text-2xl md:text-5xl" className="mb-4">
               {t('slide8_title', { en: 'Living Assets', zh: '活的资产' })}
             </GradientText>
-            <p className="text-xl text-slate-300 mb-12">
+            <p className="text-xl text-slate-300 mb-6 md:mb-12">
               {t('slide8_subtitle', { en: "Skills aren't static products. They fission and reproduce.", zh: 'Skill 不是静态商品。它会裂变，会繁殖。' })}
             </p>
 
             <AnimatedElement visible={visible} delay={100} index={0}>
-              <div className="mb-12 w-full max-w-4xl">
+              <div className="mb-6 md:mb-12 w-full max-w-4xl">
                 <svg className="w-full h-32" viewBox="0 0 800 120" xmlns="http://www.w3.org/2000/svg">
                   <circle cx="100" cy="60" r="30" fill="#818cf8" opacity="0.3" stroke="#818cf8" strokeWidth="2"/>
                   <text x="100" y="65" textAnchor="middle" fill="#818cf8" fontSize="12" fontWeight="bold">
@@ -1048,7 +1049,7 @@ function SkillCapPitch() {
               </div>
             </AnimatedElement>
 
-            <div className="grid grid-cols-3 gap-6 max-w-4xl">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-4xl">
               <AnimatedElement visible={visible} delay={100} index={1}>
                 <div className="p-6 rounded-lg bg-slate-900/50 border border-indigo-400/30">
                   <p className="text-sm text-slate-300 mb-2">
@@ -1081,16 +1082,16 @@ function SkillCapPitch() {
       id: 'trust',
       render: (visible) => (
         <SlideContainer visible={visible}>
-          <div className="absolute inset-0 flex flex-col items-center justify-center px-12 py-16">
-            <div className="absolute top-8 left-8">
+          <div className="absolute inset-0 flex flex-col items-center justify-center px-4 py-8 md:px-12 md:py-16">
+            <div className="absolute top-4 left-4 md:top-8 md:left-8">
               <MinusAiLogo size={40} />
             </div>
 
-            <GradientText size="text-5xl" className="mb-2">
+            <GradientText size="text-2xl md:text-5xl" className="mb-2">
               {t('slide9_title', { en: 'Trust & Safety', zh: '信任与安全' })}
             </GradientText>
 
-            <div className="grid grid-cols-3 gap-6 mb-12 max-w-4xl">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-6 md:mb-12 max-w-4xl">
               <AnimatedElement visible={visible} delay={100} index={0}>
                 <div className="p-6 rounded-lg bg-slate-900/50 border border-indigo-400/30">
                   <div className="text-3xl mb-3">🔍</div>
@@ -1132,7 +1133,7 @@ function SkillCapPitch() {
               {t('slide9_anti_spec', { en: 'Anti-Speculation Features', zh: '反投机特性' })}
             </p>
 
-            <div className="grid grid-cols-3 gap-6 max-w-4xl">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-4xl">
               <AnimatedElement visible={visible} delay={100} index={3}>
                 <div className="p-6 rounded-lg bg-slate-900/50 border border-indigo-400/30">
                   <p className="text-sm text-indigo-400 font-bold mb-2">
@@ -1174,19 +1175,19 @@ function SkillCapPitch() {
       id: 'agents',
       render: (visible) => (
         <SlideContainer visible={visible}>
-          <div className="absolute inset-0 flex flex-col items-center justify-center px-12 py-16">
-            <div className="absolute top-8 left-8">
+          <div className="absolute inset-0 flex flex-col items-center justify-center px-4 py-8 md:px-12 md:py-16">
+            <div className="absolute top-4 left-4 md:top-8 md:left-8">
               <MinusAiLogo size={40} />
             </div>
 
-            <GradientText size="text-5xl" className="mb-2">
+            <GradientText size="text-2xl md:text-5xl" className="mb-2">
               {t('slide10_title', { en: 'Agent Integration', zh: 'Agent 集成' })}
             </GradientText>
-            <p className="text-2xl text-purple-300 mb-12">
+            <p className="text-2xl text-purple-300 mb-6 md:mb-12">
               {t('slide10_subtitle', { en: 'AI Agent Participation', zh: 'AI Agent 参与' })}
             </p>
 
-            <div className="max-w-3xl mb-12">
+            <div className="max-w-3xl mb-6 md:mb-12">
               <div className="space-y-4">
                 <AnimatedElement visible={visible} delay={100} index={0}>
                   <div className="p-6 rounded-lg bg-gradient-to-r from-indigo-500/20 to-indigo-500/10 border border-indigo-400/30">
@@ -1269,22 +1270,22 @@ function SkillCapPitch() {
       id: 'tech',
       render: (visible) => (
         <SlideContainer visible={visible}>
-          <div className="absolute inset-0 flex flex-col items-center justify-center px-12 py-16">
-            <div className="absolute top-8 left-8">
+          <div className="absolute inset-0 flex flex-col items-center justify-center px-4 py-8 md:px-12 md:py-16">
+            <div className="absolute top-4 left-4 md:top-8 md:left-8">
               <MinusAiLogo size={40} />
             </div>
 
-            <GradientText size="text-5xl" className="mb-2">
+            <GradientText size="text-2xl md:text-5xl" className="mb-2">
               {t('slide11_title', { en: 'Infrastructure', zh: '基础设施' })}
             </GradientText>
-            <p className="text-2xl text-purple-300 mb-12">
+            <p className="text-2xl text-purple-300 mb-6 md:mb-12">
               {t('slide11_subtitle', { en: 'Technology & Compliance', zh: '技术与合规' })}
             </p>
 
-            <div className="grid grid-cols-2 gap-12 max-w-5xl mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 max-w-5xl mb-6 md:mb-12">
               <AnimatedElement visible={visible} delay={100} index={0}>
                 <div className="p-8 rounded-lg bg-slate-900/50 border border-indigo-400/30">
-                  <h3 className="text-2xl font-bold text-indigo-400 mb-6">Tech Stack</h3>
+                  <h3 className="text-lg md:text-2xl font-bold text-indigo-400 mb-6">Tech Stack</h3>
                   <div className="space-y-3 text-sm text-slate-300">
                     <div className="p-3 rounded bg-slate-800/50">
                       <p className="text-indigo-300 font-bold">Base/Arbitrum L2</p>
@@ -1308,7 +1309,7 @@ function SkillCapPitch() {
 
               <AnimatedElement visible={visible} delay={100} index={1}>
                 <div className="p-8 rounded-lg bg-slate-900/50 border border-pink-400/30">
-                  <h3 className="text-2xl font-bold text-pink-400 mb-6">Compliance</h3>
+                  <h3 className="text-lg md:text-2xl font-bold text-pink-400 mb-6">Compliance</h3>
                   <div className="space-y-3 text-sm text-slate-300">
                     <div className="p-3 rounded bg-slate-800/50">
                       <p className="text-indigo-300 font-bold">Phase 1</p>
@@ -1345,21 +1346,21 @@ function SkillCapPitch() {
       id: 'flywheel',
       render: (visible) => (
         <SlideContainer visible={visible}>
-          <div className="absolute inset-0 flex flex-col items-center justify-center px-12 py-16">
-            <div className="absolute top-8 left-8">
+          <div className="absolute inset-0 flex flex-col items-center justify-center px-4 py-8 md:px-12 md:py-16">
+            <div className="absolute top-4 left-4 md:top-8 md:left-8">
               <MinusAiLogo size={40} />
             </div>
 
-            <GradientText size="text-5xl" className="mb-4">
+            <GradientText size="text-2xl md:text-5xl" className="mb-4">
               {t('slide12_title', { en: 'The Flywheel', zh: '飞轮' })}
             </GradientText>
-            <p className="text-2xl text-purple-300 mb-12">
+            <p className="text-2xl text-purple-300 mb-6 md:mb-12">
               {t('slide12_subtitle', { en: 'Self-Reinforcing Growth', zh: '自增长飞轮' })}
             </p>
 
             {/* Flywheel diagram — 3 nodes on equilateral triangle, circular arrows */}
             <AnimatedElement visible={visible} delay={100} index={0}>
-              <div className="mb-10">
+              <div className="mb-6 md:mb-10">
                 <svg width="360" height="320" viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg">
                   <defs>
                     <marker id="arrowFly" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
@@ -1464,8 +1465,8 @@ function SkillCapPitch() {
       id: 'closer',
       render: (visible) => (
         <SlideContainer visible={visible}>
-          <div className="absolute inset-0 flex flex-col items-center justify-center px-12 py-16">
-            <div className="absolute top-8 left-8">
+          <div className="absolute inset-0 flex flex-col items-center justify-center px-4 py-8 md:px-12 md:py-16">
+            <div className="absolute top-4 left-4 md:top-8 md:left-8">
               <MinusAiLogo size={50} />
             </div>
 
@@ -1476,7 +1477,7 @@ function SkillCapPitch() {
             </AnimatedElement>
 
             <AnimatedElement visible={visible} delay={200} index={1}>
-              <p className="text-2xl text-purple-300/80 text-center mb-16">
+              <p className="text-2xl text-purple-300/80 text-center mb-8 md:mb-16">
                 {t('slide13_tagline', { en: 'The gateway to AI Skill ownership economics.', zh: '掌握 AI Skill 所有权经济的入口。' })}
               </p>
             </AnimatedElement>
@@ -1488,7 +1489,7 @@ function SkillCapPitch() {
             </AnimatedElement>
 
             <AnimatedElement visible={visible} delay={200} index={3}>
-              <div className="mb-16 px-8 py-3 rounded-lg bg-gradient-to-r from-indigo-500 to-pink-500 font-bold text-slate-900 text-lg tracking-wide">
+              <div className="mb-8 md:mb-16 px-8 py-3 rounded-lg bg-gradient-to-r from-indigo-500 to-pink-500 font-bold text-slate-900 text-lg tracking-wide">
                 skillcap.ai
               </div>
             </AnimatedElement>
@@ -1536,6 +1537,30 @@ function SkillCapPitch() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [nextSlide, prevSlide]);
 
+  useEffect(() => {
+    let touchStartX = 0;
+    const handleTouchStart = (e) => {
+      touchStartX = e.touches[0].clientX;
+    };
+
+    const handleTouchEnd = (e) => {
+      const touchEndX = e.changedTouches[0].clientX;
+      const swipeDistance = touchStartX - touchEndX;
+      if (swipeDistance > 50) {
+        nextSlide();
+      } else if (swipeDistance < -50) {
+        prevSlide();
+      }
+    };
+
+    window.addEventListener('touchstart', handleTouchStart);
+    window.addEventListener('touchend', handleTouchEnd);
+    return () => {
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchend', handleTouchEnd);
+    };
+  }, [nextSlide, prevSlide]);
+
   return (
     <div className="relative w-full h-screen overflow-hidden font-sans"
          style={{ background: 'linear-gradient(180deg, #0a0a0f 0%, #0f0f1a 100%)' }}>
@@ -1560,7 +1585,7 @@ function SkillCapPitch() {
       <button
         onClick={nextSlide}
         disabled={current >= SLIDES.length - 1}
-        className="absolute bottom-12 right-20 z-20 px-6 py-2 rounded-lg bg-indigo-500/20 border border-indigo-400/50 text-indigo-300 hover:bg-indigo-500/30 disabled:opacity-30 transition text-sm font-bold"
+        className="absolute bottom-12 right-4 md:right-20 z-20 px-6 py-2 rounded-lg bg-indigo-500/20 border border-indigo-400/50 text-indigo-300 hover:bg-indigo-500/30 disabled:opacity-30 transition text-sm font-bold"
       >
         Next →
       </button>
