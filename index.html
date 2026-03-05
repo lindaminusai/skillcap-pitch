@@ -144,7 +144,7 @@ function SkillCapPitch() {
       id: 'title',
       render: (visible) => (
         <SlideContainer visible={visible}>
-          <div className="absolute inset-0 flex flex-col items-center justify-start md:justify-center overflow-y-auto px-4 pt-20 pb-16 md:px-0 md:py-16">
+          <div className="absolute inset-0 flex flex-col items-center justify-center px-4 py-8 md:px-0 md:py-16">
             <div className="absolute top-4 left-4 md:top-8 md:left-8">
               <MinusAiLogo size={50} />
             </div>
@@ -188,7 +188,7 @@ function SkillCapPitch() {
       id: 'axioms',
       render: (visible) => (
         <SlideContainer visible={visible}>
-          <div className="absolute inset-0 flex flex-col items-center justify-start md:justify-center overflow-y-auto px-4 pt-20 pb-16 md:px-12 md:py-16">
+          <div className="absolute inset-0 flex flex-col items-center justify-start md:justify-center overflow-y-auto px-4 pt-20 pb-28 md:px-12 md:py-16">
             <div className="absolute top-4 left-4 md:top-8 md:left-8">
               <MinusAiLogo size={40} />
             </div>
@@ -254,7 +254,7 @@ function SkillCapPitch() {
       id: 'worldview',
       render: (visible) => (
         <SlideContainer visible={visible}>
-          <div className="absolute inset-0 flex flex-col items-center justify-start md:justify-center overflow-y-auto px-4 pt-20 pb-16 md:px-12 md:py-16">
+          <div className="absolute inset-0 flex flex-col items-center justify-start md:justify-center overflow-y-auto px-4 pt-20 pb-28 md:px-12 md:py-16">
             <div className="absolute top-4 left-4 md:top-8 md:left-8">
               <MinusAiLogo size={40} />
             </div>
@@ -362,7 +362,7 @@ function SkillCapPitch() {
       id: 'problem',
       render: (visible) => (
         <SlideContainer visible={visible}>
-          <div className="absolute inset-0 flex flex-col items-center justify-start md:justify-center overflow-y-auto px-4 pt-20 pb-16 md:px-12 md:py-16">
+          <div className="absolute inset-0 flex flex-col items-center justify-start md:justify-center overflow-y-auto px-4 pt-20 pb-28 md:px-12 md:py-16">
             <div className="absolute top-4 left-4 md:top-8 md:left-8">
               <MinusAiLogo size={40} />
             </div>
@@ -454,7 +454,7 @@ function SkillCapPitch() {
       id: 'solution',
       render: (visible) => (
         <SlideContainer visible={visible}>
-          <div className="absolute inset-0 flex flex-col items-center justify-start md:justify-center overflow-y-auto px-4 pt-20 pb-16 md:px-12 md:py-16">
+          <div className="absolute inset-0 flex flex-col items-center justify-start md:justify-center overflow-y-auto px-4 pt-20 pb-28 md:px-12 md:py-16">
             <div className="absolute top-4 left-4 md:top-8 md:left-8">
               <MinusAiLogo size={40} />
             </div>
@@ -500,13 +500,15 @@ function SkillCapPitch() {
                   desc_zh: '份额可转让、可交易，链上可验证'
                 }
               ].map((step, idx) => (
-                <AnimatedElement key={idx} visible={visible} delay={100} index={idx + 1}>
-                  <div className="p-4 rounded-lg bg-slate-900/50 border border-indigo-400/30 hover:border-indigo-400/60 transition">
-                    <p className="text-2xl font-black text-indigo-400 mb-2">{step.num}</p>
-                    <p className="text-sm font-bold text-slate-200 mb-2">{lang === 'en' ? step.title_en : step.title_zh}</p>
-                    <p className="text-xs text-slate-400">{lang === 'en' ? step.desc_en : step.desc_zh}</p>
-                  </div>
-                </AnimatedElement>
+                <div key={idx} className="h-full">
+                  <AnimatedElement visible={visible} delay={100} index={idx + 1}>
+                    <div className="p-4 rounded-lg bg-slate-900/50 border border-indigo-400/30 hover:border-indigo-400/60 transition h-full">
+                      <p className="text-2xl font-black text-indigo-400 mb-2">{step.num}</p>
+                      <p className="text-sm font-bold text-slate-200 mb-2">{lang === 'en' ? step.title_en : step.title_zh}</p>
+                      <p className="text-xs text-slate-400">{lang === 'en' ? step.desc_en : step.desc_zh}</p>
+                    </div>
+                  </AnimatedElement>
+                </div>
               ))}
             </div>
 
@@ -535,7 +537,7 @@ function SkillCapPitch() {
       id: 'ecosystem',
       render: (visible) => (
         <SlideContainer visible={visible}>
-          <div className="absolute inset-0 flex flex-col items-center justify-start md:justify-center overflow-y-auto px-4 pt-20 pb-16 md:px-12 md:py-16">
+          <div className="absolute inset-0 flex flex-col items-center justify-start md:justify-center overflow-y-auto px-4 pt-20 pb-28 md:px-12 md:py-16">
             <div className="absolute top-4 left-4 md:top-8 md:left-8">
               <MinusAiLogo size={40} />
             </div>
@@ -646,7 +648,7 @@ function SkillCapPitch() {
       id: 'six-pools',
       render: (visible) => (
         <SlideContainer visible={visible}>
-          <div className="absolute inset-0 flex flex-col items-center justify-start md:justify-center overflow-y-auto px-4 pt-20 pb-16 md:px-10 md:py-14">
+          <div className="absolute inset-0 flex flex-col items-center justify-start md:justify-center overflow-y-auto px-4 pt-20 pb-28 md:px-10 md:py-14">
             <div className="absolute top-4 left-4 md:top-8 md:left-8">
               <MinusAiLogo size={40} />
             </div>
@@ -666,7 +668,7 @@ function SkillCapPitch() {
                 <div className="text-center text-xs font-bold text-indigo-300 tracking-wider uppercase mb-3">
                   {t('slide6_person_label', { en: 'Person Pools', zh: 'Person 池' })}
                 </div>
-                <div className="flex-1 grid grid-cols-5 md:grid-cols-5 gap-2">
+                <div className="flex-1 grid grid-cols-2 md:grid-cols-5 gap-2">
                   {[
                     { emoji: '🔨', name_en: 'Build', name_zh: '建设', pct: 30, color: 'from-indigo-500 to-indigo-400' },
                     { emoji: '👤', name_en: 'Use', name_zh: '使用', pct: 25, color: 'from-purple-500 to-purple-400' },
@@ -689,13 +691,13 @@ function SkillCapPitch() {
               </div>
 
               {/* + sign between groups */}
-              <div className="hidden md:flex items-center">
+              <div className="flex items-center justify-center">
                 <span className="text-2xl font-bold text-slate-500">+</span>
               </div>
 
               {/* SC Share Pool — separate, same height */}
               <AnimatedElement visible={visible} delay={150} index={5}>
-                <div className="w-36 rounded-xl border-2 border-pink-400/40 bg-gradient-to-b from-pink-500/10 to-slate-900/40 p-3 flex flex-col items-center justify-center text-center">
+                <div className="w-full md:w-36 mx-auto rounded-xl border-2 border-pink-400/40 bg-gradient-to-b from-pink-500/10 to-slate-900/40 p-3 flex flex-col items-center justify-center text-center">
                   <div className="text-xs font-bold text-pink-300 tracking-wider uppercase mb-2">
                     {t('slide6_sc_label', { en: 'Platform', zh: '平台池' })}
                   </div>
@@ -745,7 +747,7 @@ function SkillCapPitch() {
       id: 'market-structure',
       render: (visible) => (
         <SlideContainer visible={visible}>
-          <div className="absolute inset-0 flex flex-col items-center justify-start md:justify-center overflow-y-auto px-4 pt-20 pb-16 md:px-12 md:py-16">
+          <div className="absolute inset-0 flex flex-col items-center justify-start md:justify-center overflow-y-auto px-4 pt-20 pb-28 md:px-12 md:py-16">
             <div className="absolute top-4 left-4 md:top-8 md:left-8">
               <MinusAiLogo size={40} />
             </div>
@@ -888,7 +890,7 @@ function SkillCapPitch() {
       id: 'pnl',
       render: (visible) => (
         <SlideContainer visible={visible}>
-          <div className="absolute inset-0 flex flex-col items-center justify-start md:justify-center overflow-y-auto px-4 pt-20 pb-16 md:px-12 md:py-16">
+          <div className="absolute inset-0 flex flex-col items-center justify-start md:justify-center overflow-y-auto px-4 pt-20 pb-28 md:px-12 md:py-16">
             <div className="absolute top-4 left-4 md:top-8 md:left-8">
               <MinusAiLogo size={40} />
             </div>
@@ -1008,7 +1010,7 @@ function SkillCapPitch() {
       id: 'fission',
       render: (visible) => (
         <SlideContainer visible={visible}>
-          <div className="absolute inset-0 flex flex-col items-center justify-start md:justify-center overflow-y-auto px-4 pt-20 pb-16 md:px-12 md:py-16">
+          <div className="absolute inset-0 flex flex-col items-center justify-start md:justify-center overflow-y-auto px-4 pt-20 pb-28 md:px-12 md:py-16">
             <div className="absolute top-4 left-4 md:top-8 md:left-8">
               <MinusAiLogo size={40} />
             </div>
@@ -1021,8 +1023,8 @@ function SkillCapPitch() {
             </p>
 
             <AnimatedElement visible={visible} delay={100} index={0}>
-              <div className="mb-6 md:mb-12 w-full max-w-4xl overflow-x-auto">
-                <svg className="w-full h-24 md:h-32 min-w-full" viewBox="0 0 800 120" xmlns="http://www.w3.org/2000/svg">
+              <div className="mb-6 md:mb-12 w-full max-w-4xl flex justify-center">
+                <svg className="w-full max-w-md md:max-w-lg h-40 md:h-32" viewBox="50 0 280 120" xmlns="http://www.w3.org/2000/svg">
                   <circle cx="100" cy="60" r="30" fill="#818cf8" opacity="0.3" stroke="#818cf8" strokeWidth="2"/>
                   <text x="100" y="65" textAnchor="middle" fill="#818cf8" fontSize="12" fontWeight="bold">
                     {lang === 'en' ? 'Parent' : '母'}
@@ -1082,7 +1084,7 @@ function SkillCapPitch() {
       id: 'trust',
       render: (visible) => (
         <SlideContainer visible={visible}>
-          <div className="absolute inset-0 flex flex-col items-center justify-start md:justify-center overflow-y-auto px-4 pt-20 pb-16 md:px-12 md:py-16">
+          <div className="absolute inset-0 flex flex-col items-center justify-start md:justify-center overflow-y-auto px-4 pt-20 pb-28 md:px-12 md:py-16">
             <div className="absolute top-4 left-4 md:top-8 md:left-8">
               <MinusAiLogo size={40} />
             </div>
@@ -1175,7 +1177,7 @@ function SkillCapPitch() {
       id: 'agents',
       render: (visible) => (
         <SlideContainer visible={visible}>
-          <div className="absolute inset-0 flex flex-col items-center justify-start md:justify-center overflow-y-auto px-4 pt-20 pb-16 md:px-12 md:py-16">
+          <div className="absolute inset-0 flex flex-col items-center justify-start md:justify-center overflow-y-auto px-4 pt-20 pb-28 md:px-12 md:py-16">
             <div className="absolute top-4 left-4 md:top-8 md:left-8">
               <MinusAiLogo size={40} />
             </div>
@@ -1270,7 +1272,7 @@ function SkillCapPitch() {
       id: 'tech',
       render: (visible) => (
         <SlideContainer visible={visible}>
-          <div className="absolute inset-0 flex flex-col items-center justify-start md:justify-center overflow-y-auto px-4 pt-20 pb-16 md:px-12 md:py-16">
+          <div className="absolute inset-0 flex flex-col items-center justify-start md:justify-center overflow-y-auto px-4 pt-20 pb-28 md:px-12 md:py-16">
             <div className="absolute top-4 left-4 md:top-8 md:left-8">
               <MinusAiLogo size={40} />
             </div>
@@ -1346,7 +1348,7 @@ function SkillCapPitch() {
       id: 'flywheel',
       render: (visible) => (
         <SlideContainer visible={visible}>
-          <div className="absolute inset-0 flex flex-col items-center justify-start md:justify-center overflow-y-auto px-4 pt-20 pb-16 md:px-12 md:py-16">
+          <div className="absolute inset-0 flex flex-col items-center justify-start md:justify-center overflow-y-auto px-4 pt-20 pb-28 md:px-12 md:py-16">
             <div className="absolute top-4 left-4 md:top-8 md:left-8">
               <MinusAiLogo size={40} />
             </div>
@@ -1465,7 +1467,7 @@ function SkillCapPitch() {
       id: 'closer',
       render: (visible) => (
         <SlideContainer visible={visible}>
-          <div className="absolute inset-0 flex flex-col items-center justify-start md:justify-center overflow-y-auto px-4 pt-20 pb-16 md:px-12 md:py-16 md:pt-16 md:pb-16">
+          <div className="absolute inset-0 flex flex-col items-center justify-start md:justify-center overflow-y-auto px-4 pt-20 pb-28 md:px-12 md:py-16 md:pt-16 md:pb-16">
             <div className="absolute top-4 left-4 md:top-8 md:left-8">
               <MinusAiLogo size={50} />
             </div>
